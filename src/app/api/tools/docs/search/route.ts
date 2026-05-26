@@ -2,6 +2,43 @@ import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/server/prisma";
 import { requireToolApiUser } from "@/server/tool-access";
 
+type ClientSearchResult = {
+  id: string;
+  name: string;
+  email: string | null;
+};
+
+type ProjectSearchResult = {
+  id: string;
+  name: string;
+  clientId: string;
+  client: {
+    name: string;
+  };
+};
+
+type ProformaSearchResult = {
+  id: string;
+  number: string;
+  projectId: string;
+  project: {
+    name: string;
+    clientId: string;
+  };
+};
+
+type InvoiceSearchResult = {
+  id: string;
+  number: string;
+  proforma: {
+    projectId: string;
+    project: {
+      name: string;
+      clientId: string;
+    } | null;
+  } | null;
+};
+
 export async function GET(request: NextRequest) {
   const access = await requireToolApiUser(request);
   if (access instanceof NextResponse) return access;
@@ -41,10 +78,10 @@ export async function GET(request: NextRequest) {
   ]);
 
   return NextResponse.json({
-    clients: clients.map((c) => ({ id: c.id, name: c.name, email: c.email })),
-    projects: projects.map((p) => ({ id: p.id, name: p.name, clientId: p.clientId, clientName: p.client.name })),
-    proformas: proformas.map((p) => ({ id: p.id, number: p.number, projectId: p.projectId, clientId: p.project.clientId, projectName: p.project.name })),
-    invoices: invoices.map((inv) => ({
+    clients: (clients as ClientSearchResult[]).map((c) => ({ id: c.id, name: c.name, email: c.email })),
+    projects: (projects as ProjectSearchResult[]).map((p) => ({ id: p.id, name: p.name, clientId: p.clientId, clientName: p.client.name })),
+    proformas: (proformas as ProformaSearchResult[]).map((p) => ({ id: p.id, number: p.number, projectId: p.projectId, clientId: p.project.clientId, projectName: p.project.name })),
+    invoices: (invoices as InvoiceSearchResult[]).map((inv) => ({
       id: inv.id,
       number: inv.number,
       projectId: inv.proforma?.projectId ?? null,
