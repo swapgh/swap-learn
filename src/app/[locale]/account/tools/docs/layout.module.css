@@ -1,0 +1,32 @@
+.layout {
+  display: grid;
+  grid-template-columns: 13rem minmax(0, 1fr);
+  gap: 0.75rem;
+  min-height: 100vh;
+  padding: 0.75rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.mainArea {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  min-width: 0;
+  min-height: calc(100vh - 1.5rem);
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  flex: 1;
+  min-width: 0;
+}
+
+@media (max-width: 760px) {
+  .layout {
+    grid-template-columns: 1fr;
+    padding: 0.6rem;
+  }
+}

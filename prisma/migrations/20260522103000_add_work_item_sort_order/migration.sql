@@ -1,0 +1,1 @@
+ALTER TABLE "work_items" ADD COLUMN "sort_order" INTEGER NOT NULL DEFAULT 0;

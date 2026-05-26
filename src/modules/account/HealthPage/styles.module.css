@@ -1,0 +1,1751 @@
+.page {
+  padding: clamp(16px, 3vw, 34px) var(--space-page-x);
+  max-width: 96rem;
+  margin: 0 auto;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  min-width: 0;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.kicker {
+  margin: 0;
+  color: var(--color-accent);
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.header h1,
+.section h2,
+.review h2 {
+  margin: 0;
+}
+
+.header h1 {
+  font-size: clamp(1.55rem, 3.4vw, 2.1rem);
+  line-height: 1.08;
+}
+
+.header p,
+.sectionHeader p,
+.review p,
+.empty {
+  margin: 0;
+  color: var(--color-muted);
+}
+
+.header > div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.backLink {
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  color: var(--color-text);
+  font-weight: 800;
+  padding: 0.45rem 0.65rem;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.backLink:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+.navDivider {
+  display: block;
+  height: 1px;
+  background: var(--color-border);
+  margin: 0.05rem 0 0.1rem;
+}
+
+.notice,
+.section,
+.review {
+  background:
+    linear-gradient(180deg, rgb(255 255 255 / 0.045), rgb(255 255 255 / 0.016)),
+    var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+}
+
+.notice {
+  padding: 0.7rem 0.85rem;
+  color: var(--color-muted);
+  font-size: 0.88rem;
+}
+
+.workspace {
+  display: grid;
+  grid-template-columns: 11.5rem minmax(0, 1fr);
+  gap: 0.85rem;
+  align-items: start;
+}
+
+.workspaceContent {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  min-width: 0;
+}
+
+.healthNav {
+  position: sticky;
+  top: 104px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  background:
+    linear-gradient(180deg, rgb(255 255 255 / 0.035), rgb(255 255 255 / 0.012)),
+    var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 0.4rem;
+}
+
+.healthNav a {
+  color: var(--color-muted);
+  border: 1px solid transparent;
+  border-radius: 8px;
+  padding: 0.48rem 0.6rem;
+  text-decoration: none;
+  font-size: 0.86rem;
+  font-weight: 700;
+}
+
+.healthNav a:hover,
+.healthNav a:focus-visible,
+.activeNav {
+  color: var(--color-accent);
+  background: rgb(0 0 0 / 0.14);
+  border-color: var(--color-border);
+  outline: none;
+}
+
+.section,
+.review {
+  padding: clamp(0.75rem, 2vw, 1rem);
+  scroll-margin-top: 96px;
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.pageIntro {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  margin-bottom: 0.65rem;
+}
+
+.pageIntro h2 {
+  margin: 0;
+  font-size: 1.08rem;
+}
+
+.pageIntro p,
+.muted {
+  margin: 0;
+  color: var(--color-muted);
+}
+
+.sectionHeader {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.65rem;
+}
+
+.sectionHeader h2,
+.review h2 {
+  font-size: 1.02rem;
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.6rem;
+}
+
+.field,
+.fieldWide {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.field span,
+.fieldWide span,
+.checkbox {
+  color: var(--color-muted);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.field input,
+.field select,
+.fieldWide textarea {
+  width: 100%;
+  min-height: 2.15rem;
+  color: var(--color-text);
+  background: rgb(0 0 0 / 0.18);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 0.48rem 0.6rem;
+  font: inherit;
+}
+
+.fieldWide {
+  grid-column: 1 / -1;
+}
+
+.fieldWide textarea {
+  resize: vertical;
+}
+
+.actions {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.actions button,
+.stackForm button {
+  min-height: 2.2rem;
+  background: var(--color-accent);
+  color: var(--color-accent-contrast);
+  border: none;
+  border-radius: 8px;
+  padding: 0.5rem 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.actions button:hover,
+.stackForm button:hover {
+  opacity: 0.9;
+}
+
+.planGrid,
+.twoColumns,
+.logGrid,
+.routineGrid,
+.recipeGrid,
+.metricGrid {
+  display: grid;
+  gap: 0.7rem;
+}
+
+.planGrid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.planGrid article,
+.logCard,
+.routineGrid article,
+.mealCard,
+.metricGrid div,
+.timeline article,
+.guideCard {
+  background: rgb(0 0 0 / 0.14);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 0.75rem;
+}
+
+.planGrid h3,
+.routineGrid h3,
+.mealCard h3,
+.timeline h3,
+.guideCard h3 {
+  margin: 0 0 0.45rem;
+  font-size: 0.95rem;
+}
+
+.routineGrid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.routineGrid p,
+.mealCard p,
+.timeline p,
+.guideCard p {
+  margin: 0;
+  color: var(--color-muted);
+  font-size: 0.88rem;
+  line-height: 1.42;
+}
+
+.stepsList {
+  margin: 0;
+  padding-left: 1.25rem;
+  color: var(--color-muted);
+}
+
+.stepsList li + li {
+  margin-top: 0.35rem;
+}
+
+.recipeGrid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.metricGrid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.metricGrid div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.metricGrid strong {
+  color: var(--color-accent);
+  font-size: 1.05rem;
+}
+
+.metricGrid span {
+  color: var(--color-muted);
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.profileSummaryGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+  gap: 0.7rem;
+}
+
+.profileSummaryGrid article,
+.profilePlanNote {
+  background: rgb(0 0 0 / 0.14);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 0.75rem;
+}
+
+.profileSummaryGrid span {
+  display: block;
+  color: var(--color-muted);
+  font-size: 0.78rem;
+  font-weight: 800;
+  margin-bottom: 0.25rem;
+}
+
+.profileSummaryGrid strong,
+.profilePlanNote strong {
+  color: var(--color-text);
+}
+
+.profilePlanNote {
+  margin-top: 0.7rem;
+}
+
+.profilePlanNote p {
+  margin: 0.4rem 0 0;
+  color: var(--color-muted);
+}
+
+.editProfilePanel summary {
+  display: inline-flex;
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 0.45rem 0.65rem;
+  font-size: 0.9rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.editProfilePanel summary:hover {
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+.editProfilePanel[open] summary {
+  margin-bottom: 0.7rem;
+}
+
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.guideGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+  gap: 0.7rem;
+}
+
+.guideTabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.guideTabs a,
+.guideTabs button {
+  color: var(--color-muted);
+  background: rgb(0 0 0 / 0.14);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 0.42rem 0.62rem;
+  text-decoration: none;
+  font-size: 0.82rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.guideTabs a:hover,
+.guideTabs button:hover,
+.guideTabs .activeGuideTab {
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+  background: color-mix(in srgb, var(--color-accent) 12%, rgb(0 0 0 / 0.14));
+}
+
+.guideCategory {
+  display: inline-flex;
+  margin-bottom: 0.35rem;
+  color: var(--color-accent);
+  font-size: 0.72rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.guideCard {
+  scroll-margin-top: 96px;
+}
+
+.guideCard ol {
+  margin: 0.55rem 0 0;
+  padding-left: 1.2rem;
+  color: var(--color-muted);
+  font-size: 0.86rem;
+}
+
+.guideCard li + li {
+  margin-top: 0.3rem;
+}
+
+.guideCard a {
+  display: inline-flex;
+  margin-top: 0.55rem;
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 0.34rem 0.5rem;
+  text-decoration: none;
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+
+.guideCard a:hover {
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+.planGrid ul {
+  margin: 0;
+  padding-left: 1.1rem;
+  color: var(--color-muted);
+  font-size: 0.88rem;
+}
+
+.planGrid li + li {
+  margin-top: 0.28rem;
+}
+
+.review {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  border-color: color-mix(in srgb, var(--color-accent) 45%, var(--color-border));
+}
+
+.review strong {
+  color: var(--color-text);
+}
+
+.review small {
+  color: var(--color-muted);
+  font-size: 0.86rem;
+}
+
+.compactTitle {
+  margin: 0 0 0.55rem;
+  font-size: 1.02rem;
+}
+
+.twoColumns {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.stackForm {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.combinedProgressForm {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.formSubsection {
+  background: rgb(0 0 0 / 0.1);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 0.75rem;
+}
+
+.formSubsection h3 {
+  margin: 0 0 0.55rem;
+  font-size: 0.95rem;
+}
+
+.optionalNotes {
+  grid-column: 1 / -1;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: rgb(0 0 0 / 0.1);
+  padding: 0.55rem;
+}
+
+.optionalNotes summary {
+  color: var(--color-text);
+  cursor: pointer;
+  font-size: 0.88rem;
+  font-weight: 800;
+}
+
+.optionalNotes[open] {
+  display: grid;
+  gap: 0.55rem;
+}
+
+.optionalNotes[open] summary {
+  margin-bottom: 0.15rem;
+}
+
+.combinedProgressForm > button {
+  align-self: flex-end;
+  min-height: 2.2rem;
+  background: var(--color-accent);
+  color: var(--color-accent-contrast);
+  border: none;
+  border-radius: 8px;
+  padding: 0.5rem 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.combinedProgressForm > button:hover {
+  opacity: 0.9;
+}
+
+.progressLogSection {
+  padding-bottom: 0.8rem;
+}
+
+.progressLogSection .combinedProgressForm {
+  gap: 0.5rem;
+}
+
+.progressTools {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  color: var(--color-muted);
+  background: rgb(0 0 0 / 0.12);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 0.35rem 0.45rem;
+  font-size: 0.78rem;
+}
+
+.autofillButton {
+  min-height: 1.75rem;
+  color: var(--color-accent);
+  background: rgb(0 0 0 / 0.14);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 0.25rem 0.55rem;
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 850;
+  cursor: pointer;
+}
+
+.autofillButton:hover,
+.autofillButton:focus-visible {
+  border-color: var(--color-accent);
+  outline: none;
+}
+
+.progressLogSection .formSubsection {
+  padding: 0.5rem;
+}
+
+.progressLogSection .formSubsection h3 {
+  margin-bottom: 0.42rem;
+  font-size: 0.88rem;
+  letter-spacing: 0;
+}
+
+.progressLogSection .formGrid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.35rem;
+}
+
+.progressLogSection .field,
+.progressLogSection .choiceField {
+  display: grid;
+  grid-template-columns: minmax(4.6rem, max-content) minmax(0, 1fr);
+  align-items: center;
+  gap: 0.35rem;
+  min-height: 1.9rem;
+  background: rgb(0 0 0 / 0.12);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 0.18rem 0.25rem 0.18rem 0.45rem;
+}
+
+.progressLogSection .fieldWide {
+  gap: 0.18rem;
+}
+
+.progressLogSection .field span,
+.progressLogSection .fieldWide span,
+.progressLogSection .choiceField > span {
+  font-size: 0.74rem;
+  white-space: nowrap;
+}
+
+.progressLogSection .field input,
+.progressLogSection .field select {
+  min-height: 1.55rem;
+  background: transparent;
+  border: none;
+  padding: 0.16rem 0.25rem;
+  font-size: 0.88rem;
+}
+
+.progressLogSection .fieldWide textarea {
+  min-height: 3.6rem;
+  padding: 0.35rem 0.45rem;
+  font-size: 0.88rem;
+}
+
+.progressLogSection .choiceGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.22rem;
+  justify-content: start;
+}
+
+.progressLogSection .choiceGrid label {
+  min-height: 1.5rem;
+  min-width: 2.25rem;
+  background: transparent;
+  padding: 0.12rem 0.25rem;
+  font-size: 0.8rem;
+}
+
+.progressLogSection .toggleRow {
+  grid-template-columns: repeat(2, minmax(7rem, max-content));
+  gap: 0.35rem;
+  justify-content: start;
+}
+
+.progressLogSection .checkbox {
+  min-height: 1.7rem;
+  padding: 0.22rem 0.42rem;
+  font-size: 0.8rem;
+}
+
+.progressLogSection .optionalNotes {
+  padding: 0.34rem 0.45rem;
+}
+
+.progressLogSection .combinedProgressForm > button {
+  min-height: 2rem;
+  padding: 0.34rem 0.68rem;
+}
+
+.checkbox {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 2.15rem;
+}
+
+.checkbox input {
+  width: 1rem;
+  height: 1rem;
+  accent-color: var(--color-accent);
+}
+
+.checklistShell {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.checklistProgress {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.55rem;
+  color: var(--color-muted);
+  font-size: 0.85rem;
+  font-weight: 800;
+  background: rgb(0 0 0 / 0.12);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 0.5rem 0.65rem;
+}
+
+.checkTrack {
+  height: 0.5rem;
+  overflow: hidden;
+  background: rgb(0 0 0 / 0.2);
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+}
+
+.checkFill {
+  height: 100%;
+  background: var(--color-accent);
+}
+
+.checklistGroups {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  gap: 0.7rem;
+}
+
+.checkGroup {
+  background: rgb(0 0 0 / 0.14);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 0.75rem;
+}
+
+.checkGroupHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.55rem;
+}
+
+.checkGroup h3 {
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.checkGroupAction {
+  min-height: 1.85rem;
+  color: var(--color-accent);
+  background: rgb(0 0 0 / 0.16);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 0.25rem 0.5rem;
+  font: inherit;
+  font-size: 0.76rem;
+  font-weight: 900;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.checkGroupAction:hover,
+.checkGroupAction:focus-visible {
+  border-color: var(--color-accent);
+  outline: none;
+}
+
+.checkItems {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.checkItemWrap {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0.45rem;
+}
+
+.checkItem {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--color-muted);
+  font-size: 0.88rem;
+  line-height: 1.35;
+  background: rgb(255 255 255 / 0.035);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 0.55rem;
+  cursor: pointer;
+  min-height: 2.5rem;
+}
+
+.checkItem input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.checkBox {
+  width: 1.1rem;
+  height: 1.1rem;
+  border: 1px solid var(--color-border);
+  border-radius: 5px;
+  background: rgb(0 0 0 / 0.16);
+  box-shadow: inset 0 0 0 2px rgb(0 0 0 / 0.18);
+}
+
+.checkItem:hover {
+  border-color: color-mix(in srgb, var(--color-accent) 45%, var(--color-border));
+  color: var(--color-text);
+}
+
+.checkItem:has(input:focus-visible) {
+  outline: 2px solid color-mix(in srgb, var(--color-accent) 55%, transparent);
+  outline-offset: 2px;
+}
+
+.checkedItem {
+  color: var(--color-text);
+  background: color-mix(in srgb, var(--color-accent) 12%, rgb(255 255 255 / 0.035));
+  border-color: color-mix(in srgb, var(--color-accent) 50%, var(--color-border));
+}
+
+.checkedItem .checkBox {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  box-shadow: inset 0 0 0 3px var(--color-surface);
+}
+
+.checkedItem .checkText {
+  text-decoration: line-through;
+  text-decoration-thickness: 1px;
+  text-decoration-color: color-mix(in srgb, var(--color-accent) 65%, transparent);
+}
+
+.infoLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.35rem;
+  height: 1.35rem;
+  align-self: center;
+  color: var(--color-muted);
+  background: rgb(255 255 255 / 0.035);
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  text-decoration: none;
+  font-size: 0.78rem;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.infoLink:hover {
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+.inlineInfo {
+  grid-column: 1 / -1;
+  background: rgb(0 0 0 / 0.18);
+  border: 1px solid color-mix(in srgb, var(--color-accent) 32%, var(--color-border));
+  border-radius: 8px;
+  padding: 0.6rem;
+}
+
+.inlineInfo p {
+  margin: 0;
+  color: var(--color-muted);
+  font-size: 0.86rem;
+  line-height: 1.38;
+}
+
+.inlineInfo a {
+  display: inline-flex;
+  margin-top: 0.55rem;
+  color: var(--color-accent);
+  text-decoration: none;
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+
+.inlineInfo a:hover {
+  text-decoration: underline;
+}
+
+.checkItem input,
+.checkbox input {
+  accent-color: var(--color-accent);
+}
+
+.calendarStrip,
+.choiceGrid,
+.toggleRow,
+.weekGrid,
+.weekPlanner {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.calendarStrip,
+.weekGrid {
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+}
+
+.weekPlanner {
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  margin-bottom: 0.7rem;
+}
+
+.calendarStrip span,
+.weekGrid span,
+.choiceGrid label {
+  background: rgb(0 0 0 / 0.14);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 0.5rem;
+}
+
+.weekPlanner article {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.18rem;
+  min-height: 4.25rem;
+  background: rgb(0 0 0 / 0.14);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 0.55rem;
+}
+
+.weekPlanner span {
+  color: var(--color-muted);
+  font-size: 0.74rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.weekPlanner strong {
+  color: var(--color-text);
+  font-size: 0.9rem;
+  line-height: 1.2;
+}
+
+.weekPlanner small {
+  color: var(--color-muted);
+  font-size: 0.72rem;
+  line-height: 1.25;
+}
+
+.todayCard {
+  border-color: var(--color-accent) !important;
+  background: color-mix(in srgb, var(--color-accent) 12%, rgb(0 0 0 / 0.14)) !important;
+}
+
+.todayCard em {
+  position: absolute;
+  top: 0.42rem;
+  right: 0.42rem;
+  color: var(--color-accent);
+  border: 1px solid color-mix(in srgb, var(--color-accent) 50%, var(--color-border));
+  border-radius: 999px;
+  padding: 0.15rem 0.4rem;
+  font-size: 0.68rem;
+  font-style: normal;
+  font-weight: 900;
+}
+
+.calendarStrip span,
+.weekGrid span {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.calendarStrip small,
+.weekGrid small {
+  color: var(--color-muted);
+  font-size: 0.72rem;
+}
+
+.weekGrid {
+  margin-bottom: 0.7rem;
+}
+
+.choiceField {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.choiceField > span,
+.quickDateField > span {
+  color: var(--color-muted);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.choiceGrid {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.choiceGrid label {
+  display: flex;
+  justify-content: center;
+  gap: 0.35rem;
+  color: var(--color-text);
+  font-weight: 800;
+}
+
+.choiceGrid input {
+  accent-color: var(--color-accent);
+}
+
+.toggleRow {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.quickDateField {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.quickDateGrid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 0.35rem;
+}
+
+.quickDateGrid button {
+  min-height: 2.25rem;
+  color: var(--color-muted);
+  background: rgb(0 0 0 / 0.14);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 0.4rem;
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.quickDateGrid button:hover,
+.quickDateGrid .activeDate {
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+  background: color-mix(in srgb, var(--color-accent) 12%, rgb(0 0 0 / 0.14));
+}
+
+.logGrid {
+  grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
+}
+
+.progressWeek {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 0.35rem;
+}
+
+.progressDay {
+  display: flex;
+  flex-direction: column;
+  gap: 0.12rem;
+  min-height: 2.85rem;
+  color: var(--color-muted);
+  background: rgb(0 0 0 / 0.14);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 0.38rem 0.45rem;
+  text-decoration: none;
+  touch-action: manipulation;
+}
+
+.progressDay span {
+  color: var(--color-text);
+  font-weight: 800;
+  font-size: 0.78rem;
+}
+
+.progressDay strong {
+  color: var(--color-text);
+  font-size: 0.78rem;
+}
+
+.progressDay small {
+  font-size: 0.72rem;
+}
+
+.calendarHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.7rem;
+  margin-bottom: 0.6rem;
+}
+
+.calendarHeader h2 {
+  font-size: 1.02rem;
+  text-transform: capitalize;
+}
+
+.calendarHeader div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.calendarHeader a,
+.editDayPanel summary {
+  color: var(--color-text);
+  background: rgb(0 0 0 / 0.14);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 0.35rem 0.55rem;
+  text-decoration: none;
+  font-size: 0.8rem;
+  font-weight: 850;
+}
+
+.calendarHeader a:hover,
+.editDayPanel summary:hover {
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+.monthCalendar {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 0.35rem;
+}
+
+.calendarDay {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: 0.1rem;
+  min-height: 4rem;
+  color: var(--color-muted);
+  background: rgb(0 0 0 / 0.14);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 0.42rem;
+  text-decoration: none;
+  touch-action: manipulation;
+}
+
+.calendarDay span {
+  color: var(--color-text);
+  font-size: 0.82rem;
+  font-weight: 900;
+}
+
+.calendarDay strong {
+  color: var(--color-accent);
+  font-size: 0.72rem;
+  font-weight: 900;
+}
+
+.calendarDay small {
+  min-width: 0;
+  overflow: hidden;
+  color: var(--color-muted);
+  font-size: 0.68rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.selectedCalendarDay {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--color-accent) 42%, transparent);
+}
+
+.outsideMonth {
+  opacity: 0.42;
+}
+
+.selectedProgressDay {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--color-accent) 40%, transparent);
+}
+
+.status_complete {
+  background: color-mix(in srgb, var(--color-accent) 13%, rgb(0 0 0 / 0.14));
+}
+
+.status_partial {
+  border-style: dashed;
+}
+
+.status_missed {
+  background: rgb(127 29 29 / 0.16);
+  border-color: rgb(239 68 68 / 0.32);
+}
+
+.status_pending {
+  opacity: 0.72;
+}
+
+.metricCards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.7rem;
+}
+
+.progressOverview {
+  display: grid;
+  grid-template-columns: minmax(16rem, 1.2fr) minmax(0, 2fr);
+  gap: 0.7rem;
+  align-items: stretch;
+}
+
+.progressOverview .metricCards {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.compactDiagnosis {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  min-width: 0;
+}
+
+.compactDiagnosis h2 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.compactDiagnosis p,
+.compactDiagnosis small {
+  margin: 0;
+  color: var(--color-muted);
+  font-size: 0.86rem;
+  line-height: 1.35;
+}
+
+.compactDiagnosis strong {
+  color: var(--color-text);
+  font-size: 0.9rem;
+}
+
+.metricCard {
+  background: rgb(0 0 0 / 0.14);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 0.58rem;
+}
+
+.metricCard {
+  display: flex;
+  flex-direction: column;
+  gap: 0.22rem;
+}
+
+.metricCard span {
+  color: var(--color-muted);
+  font-size: 0.8rem;
+}
+
+.metricCard strong {
+  color: var(--color-text);
+  font-size: 0.94rem;
+}
+
+.metricTrack {
+  height: 0.35rem;
+  overflow: hidden;
+  background: rgb(0 0 0 / 0.2);
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+}
+
+.metricTrack div {
+  height: 100%;
+  background: var(--color-accent);
+}
+
+.daySummary {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 0.35rem;
+  margin-bottom: 0.55rem;
+}
+
+.daySummary article {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.35rem;
+  background: rgb(0 0 0 / 0.14);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 0.4rem 0.5rem;
+  min-width: 0;
+}
+
+.daySummary span {
+  color: var(--color-muted);
+  font-size: 0.72rem;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.daySummary strong {
+  color: var(--color-text);
+  font-size: 0.84rem;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dayDetailGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.55rem;
+  margin-bottom: 0.65rem;
+}
+
+.detailCard {
+  background: rgb(0 0 0 / 0.12);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 0.6rem;
+}
+
+.detailCard h3 {
+  margin: 0 0 0.4rem;
+  font-size: 0.9rem;
+}
+
+.detailCard ul {
+  margin: 0;
+  padding-left: 1rem;
+  color: var(--color-muted);
+  font-size: 0.82rem;
+  line-height: 1.35;
+}
+
+.detailCard li + li {
+  margin-top: 0.22rem;
+}
+
+.editDayPanel {
+  border-top: 1px solid var(--color-border);
+  padding-top: 0.55rem;
+}
+
+.editDayPanel summary {
+  display: inline-flex;
+  cursor: pointer;
+}
+
+.editDayPanel[open] summary {
+  margin-bottom: 0.55rem;
+}
+
+.logCard {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  color: var(--color-muted);
+  font-size: 0.9rem;
+}
+
+.logCard strong {
+  color: var(--color-text);
+}
+
+.logCard a {
+  color: var(--color-accent);
+  font-size: 0.82rem;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.logCard a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 920px) {
+  .workspace {
+    grid-template-columns: 1fr;
+  }
+
+  .healthNav {
+    position: static;
+    flex-direction: row;
+    overflow-x: auto;
+  }
+
+  .healthNav a {
+    flex: 0 0 auto;
+    white-space: nowrap;
+  }
+
+  .formGrid,
+  .planGrid,
+  .twoColumns,
+  .routineGrid,
+  .recipeGrid,
+  .metricGrid,
+  .checklistGroups,
+  .calendarStrip,
+  .weekGrid,
+  .weekPlanner,
+  .progressWeek,
+  .dayDetailGrid,
+  .metricCards,
+  .progressOverview {
+    grid-template-columns: 1fr;
+  }
+
+  .calendarStrip,
+  .weekGrid,
+  .weekPlanner,
+  .progressWeek {
+    grid-template-columns: repeat(7, minmax(5.4rem, 1fr));
+    overflow-x: auto;
+    padding-bottom: 0.15rem;
+  }
+
+  .monthCalendar {
+    grid-template-columns: repeat(7, minmax(3.25rem, 1fr));
+  }
+
+  .progressOverview .metricCards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .daySummary {
+    display: flex;
+    overflow-x: auto;
+    padding-bottom: 0.1rem;
+  }
+
+  .daySummary article {
+    flex: 0 0 auto;
+    min-width: 7.4rem;
+  }
+}
+
+@media (max-width: 760px) {
+  .content,
+  .workspaceContent,
+  .stack {
+    gap: 0.65rem;
+  }
+
+  .header {
+    display: none;
+  }
+
+  .workspace {
+    gap: 0.6rem;
+  }
+
+  .healthNav {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    margin-inline: calc(var(--space-page-x) * -1);
+    padding-inline: var(--space-page-x);
+    border-radius: 0;
+    border-inline: none;
+    background: color-mix(in srgb, var(--color-surface) 92%, black);
+  }
+
+  .healthNav a {
+    min-height: 2.35rem;
+    display: inline-flex;
+    align-items: center;
+    padding: 0.44rem 0.62rem;
+  }
+
+  .progressCalendarSection {
+    order: 1;
+  }
+
+  .progressLogSection {
+    order: 2;
+  }
+
+  .progressOverview {
+    order: 3;
+  }
+
+  .historySection {
+    order: 4;
+  }
+
+  .progressLogSection h2 {
+    font-size: 0.95rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .daySummary {
+    margin-inline: calc(var(--space-page-x) * -1);
+    padding-inline: var(--space-page-x);
+  }
+
+  .combinedProgressForm .formGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .combinedProgressForm .fieldWide,
+  .combinedProgressForm .choiceField,
+  .optionalNotes {
+    grid-column: 1 / -1;
+  }
+
+  .field input,
+  .field select,
+  .fieldWide textarea,
+  .checkbox,
+  .choiceGrid label {
+    min-height: 2.15rem;
+  }
+
+  .checkbox {
+    justify-content: center;
+    color: var(--color-text);
+    background: rgb(0 0 0 / 0.14);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    padding: 0.5rem;
+    text-align: center;
+  }
+
+  .toggleRow {
+    gap: 0.45rem;
+  }
+
+  .combinedProgressForm > button {
+    position: sticky;
+    bottom: 0.55rem;
+    z-index: 15;
+    box-shadow: 0 10px 28px rgb(0 0 0 / 0.35);
+  }
+
+  .progressLogSection .combinedProgressForm > button {
+    min-height: 2.45rem;
+  }
+
+  .progressTools {
+    align-items: stretch;
+  }
+
+  .calendarHeader {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .calendarDay {
+    min-height: 3.2rem;
+    padding: 0.3rem;
+  }
+
+  .calendarDay small {
+    display: none;
+  }
+
+  .checklistProgress {
+    position: sticky;
+    top: 2.75rem;
+    z-index: 12;
+  }
+
+  .checklistGroups {
+    grid-template-columns: 1fr;
+  }
+
+  .checkGroup {
+    padding: 0.6rem;
+  }
+
+  .checkGroupAction {
+    min-height: 2.1rem;
+    padding-inline: 0.6rem;
+  }
+
+  .checkItem {
+    min-height: 2.85rem;
+    padding: 0.62rem;
+  }
+
+  .infoLink {
+    width: 2.1rem;
+    height: 2.1rem;
+  }
+
+  .metricCards,
+  .progressOverview .metricCards,
+  .logGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .compactDiagnosis {
+    gap: 0.22rem;
+  }
+
+  .compactDiagnosis p {
+    display: none;
+  }
+}
+
+@media (max-width: 520px) {
+  .page {
+    padding: 0 0 18px;
+  }
+
+  .section,
+  .review {
+    border-radius: 0;
+    border-inline: none;
+    padding: 0.6rem var(--space-page-x);
+  }
+
+  .choiceGrid {
+    grid-template-columns: repeat(5, minmax(2.25rem, 1fr));
+  }
+
+  .quickDateGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .toggleRow {
+    grid-template-columns: 1fr;
+  }
+
+  .fieldWide textarea {
+    min-height: 4.5rem;
+  }
+
+  .progressWeek {
+    grid-template-columns: repeat(7, minmax(4.65rem, 1fr));
+    margin-inline: calc(var(--space-page-x) * -1);
+    padding-inline: var(--space-page-x);
+    scroll-padding-inline: var(--space-page-x);
+  }
+
+  .progressDay {
+    min-height: 3rem;
+    padding: 0.4rem;
+  }
+
+  .progressDay span,
+  .progressDay strong {
+    font-size: 0.76rem;
+  }
+
+  .combinedProgressForm .formGrid,
+  .metricCards,
+  .progressOverview .metricCards,
+  .logGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .progressLogSection .formGrid,
+  .combinedProgressForm .formGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .progressTools {
+    display: grid;
+    grid-template-columns: 1fr auto;
+  }
+
+  .progressLogSection .field,
+  .progressLogSection .choiceField {
+    grid-template-columns: 1fr;
+    gap: 0.15rem;
+    padding: 0.35rem;
+  }
+
+  .progressLogSection .field input,
+  .progressLogSection .field select {
+    min-height: 1.9rem;
+    background: rgb(0 0 0 / 0.14);
+    border: 1px solid var(--color-border);
+    padding: 0.28rem 0.4rem;
+  }
+
+  .progressLogSection .choiceGrid {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(1.8rem, 1fr));
+  }
+
+  .progressLogSection .toggleRow {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .progressLogSection .choiceField,
+  .progressLogSection .optionalNotes {
+    grid-column: 1 / -1;
+  }
+
+  .formSubsection {
+    padding: 0.5rem;
+  }
+
+  .optionalNotes {
+    padding: 0.5rem;
+  }
+}
+
+@media (max-width: 760px) {
+  .backLink {
+    flex: 0 0 auto;
+    margin-bottom: 0;
+    text-align: center;
+  }
+
+  .navDivider {
+    flex: 0 0 1px;
+    width: 1px;
+    height: auto;
+    margin: 0 0.25rem;
+  }
+
+  .actions {
+    justify-content: stretch;
+  }
+
+  .actions button,
+  .stackForm button,
+  .combinedProgressForm > button {
+    width: 100%;
+  }
+}

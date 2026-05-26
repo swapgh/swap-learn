@@ -1,0 +1,138 @@
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  min-width: 0;
+  position: sticky;
+  top: 0.75rem;
+  align-self: start;
+  max-height: calc(100vh - 1.5rem);
+  overflow-y: auto;
+}
+
+.heading {
+  padding: 0.45rem 0.65rem;
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-muted);
+}
+
+.link,
+.active,
+.backLink {
+  padding: 0.5rem 0.65rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 0.82rem;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+  border: 1px solid transparent;
+}
+
+.link {
+  color: var(--color-muted);
+}
+
+.backLink {
+  color: var(--color-text);
+  font-weight: 700;
+}
+
+.link:hover,
+.backLink:hover {
+  background: var(--color-surface);
+  border-color: var(--color-border);
+  color: var(--color-text);
+}
+
+.active {
+  background: var(--color-surface);
+  border-color: var(--color-border);
+  color: var(--color-accent);
+  font-weight: 600;
+}
+
+.divider {
+  height: 1px;
+  background: var(--color-border);
+  margin: 0.35rem 0.65rem;
+}
+
+.createWrap {
+  position: relative;
+}
+
+.createBtn {
+  width: 100%;
+  padding: 0.5rem 0.65rem;
+  border-radius: 8px;
+  border: 1px dashed var(--color-border);
+  background: none;
+  color: var(--color-accent);
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+  text-align: left;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.createBtn:hover {
+  border-color: var(--color-accent);
+  background: var(--color-hover);
+}
+
+.dropdown {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 100%;
+  margin-bottom: 0.25rem;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.dropdownItem {
+  display: block;
+  padding: 0.5rem 0.65rem;
+  text-decoration: none;
+  color: var(--color-text);
+  font-size: 0.85rem;
+  transition: background 0.15s;
+}
+
+.dropdownItem:hover {
+  background: var(--color-hover);
+}
+
+@media (max-width: 760px) {
+  .nav {
+    position: static;
+    min-width: 0;
+    flex-direction: row;
+    flex-wrap: wrap;
+    overflow-x: auto;
+    padding-bottom: 0.25rem;
+  }
+
+  .heading {
+    display: none;
+  }
+
+  .link,
+  .active,
+  .backLink {
+    flex: 0 0 auto;
+    white-space: nowrap;
+  }
+
+  .divider {
+    display: none;
+  }
+
+  .createWrap {
+    display: none;
+  }
+}

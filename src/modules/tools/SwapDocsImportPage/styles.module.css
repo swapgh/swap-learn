@@ -1,0 +1,182 @@
+.importPanel {
+  background: linear-gradient(180deg, var(--color-hover), transparent), var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.typeSelector {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.typeActive,
+.typeDisabled {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 0.6rem 1rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.typeActive input,
+.typeDisabled input {
+  accent-color: var(--color-accent);
+}
+
+.typeActive {
+  background: var(--color-accent);
+  color: var(--color-accent-contrast);
+  border-color: var(--color-accent);
+}
+
+.typeDisabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.uploadArea {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.fileInput {
+  position: absolute;
+  opacity: 0;
+  width: 0.1px;
+  height: 0.1px;
+}
+
+.fileLabel {
+  background: var(--color-control);
+  border: 1px dashed var(--color-border);
+  border-radius: 8px;
+  color: var(--color-text);
+  cursor: pointer;
+  font: inherit;
+  font-weight: 700;
+  padding: 0.75rem 1.5rem;
+  transition: border-color 0.15s;
+}
+
+.fileLabel:hover {
+  border-color: var(--color-accent);
+}
+
+.rowCount {
+  color: var(--color-muted);
+  font-size: 0.85rem;
+}
+
+.mappingPanel,
+.previewPanel {
+  background: linear-gradient(180deg, var(--color-hover), transparent), var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 1.25rem;
+}
+
+.mappingPanel h2,
+.previewPanel h2 {
+  margin: 0 0 0.25rem;
+}
+
+.hint {
+  color: var(--color-muted);
+  font-size: 0.82rem;
+  margin: 0 0 1rem;
+}
+
+.mappingGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 0.75rem;
+}
+
+.mappingRow {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  color: var(--color-muted);
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+
+.mappingRow select {
+  background: var(--color-control);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 0.6rem 0.75rem;
+  font: inherit;
+}
+
+.tableWrap {
+  overflow-x: auto;
+  margin-bottom: 1rem;
+}
+
+.previewTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+
+.previewTable th,
+.previewTable td {
+  border: 1px solid var(--color-border);
+  padding: 0.5rem 0.7rem;
+  text-align: left;
+  white-space: nowrap;
+  max-width: 14rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.previewTable th {
+  background: var(--color-control-soft);
+  color: var(--color-muted);
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.actions {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.importBtn,
+.cancelBtn {
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 900;
+  padding: 0.75rem 1.25rem;
+}
+
+.importBtn {
+  background: var(--color-accent);
+  color: var(--color-accent-contrast);
+}
+
+.importBtn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.cancelBtn {
+  background: var(--color-hover);
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+}

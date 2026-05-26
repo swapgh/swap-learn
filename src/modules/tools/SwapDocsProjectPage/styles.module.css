@@ -1,0 +1,1182 @@
+.page {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 0.75rem;
+  padding: 0;
+  width: 100%;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.82rem;
+  color: var(--color-muted);
+  margin-bottom: -0.25rem;
+}
+
+.breadcrumb a {
+  color: var(--color-muted);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.breadcrumb a:hover {
+  color: var(--color-accent);
+}
+
+.breadcrumb span[aria-hidden] {
+  color: var(--color-border);
+  font-size: 0.75rem;
+}
+
+.breadcrumb > span:last-child {
+  color: var(--color-text);
+  font-weight: 700;
+  max-width: 20rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.toolbar a {
+  display: inline-flex;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: var(--color-hover);
+  color: var(--color-text);
+  font-weight: 800;
+  padding: 0.65rem 1rem;
+  text-decoration: none;
+  touch-action: manipulation;
+}
+
+.header,
+.panel,
+.workflowPanel {
+  background:
+    linear-gradient(180deg, var(--color-hover), transparent),
+    var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 0.75rem;
+}
+
+.header h1,
+.panel h2 {
+  margin: 0;
+}
+
+.header p,
+.empty,
+.row p,
+.clientBox span {
+  color: var(--color-muted);
+}
+
+.kicker {
+  color: var(--color-accent);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.stats,
+.grid {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.workflowPanel {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  gap: 0.65rem;
+}
+
+.workflowPanel h2,
+.workflowPanel p {
+  margin: 0.25rem 0 0;
+}
+
+.workflowActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: flex-end;
+}
+
+.workflowActions a {
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  color: var(--color-text);
+  font-weight: 900;
+  padding: 0.45rem 0.65rem;
+  text-decoration: none;
+  touch-action: manipulation;
+}
+
+.workflowActions a:hover {
+  border-color: var(--color-accent);
+}
+
+.stats {
+  grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+}
+
+.stats div {
+  background:
+    linear-gradient(180deg, var(--color-hover), transparent),
+    var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 0.65rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.stats strong {
+  color: var(--color-accent);
+  font-size: 1rem;
+}
+
+.stats span {
+  color: var(--color-muted);
+  font-size: 0.82rem;
+}
+
+.grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.clientBox,
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.readPanel {
+  position: relative;
+}
+
+.editIconButton {
+  position: absolute;
+  right: 0;
+  top: 0;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: var(--color-hover);
+  color: var(--color-text);
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 900;
+  padding: 0.45rem 0.7rem;
+}
+
+.detailsList {
+  display: grid;
+  gap: 0.7rem;
+  margin: 1rem 0 0;
+}
+
+.detailsList div {
+  display: grid;
+  gap: 0.2rem;
+}
+
+.detailsList dt {
+  color: var(--color-muted);
+  font-size: 0.76rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.detailsList dd {
+  margin: 0;
+}
+
+.clientBox a {
+  color: var(--color-accent);
+  font-weight: 900;
+  text-decoration: none;
+}
+
+.clientBox a:hover {
+  text-decoration: underline;
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.55rem;
+  margin-top: 0.6rem;
+}
+
+.formGrid label {
+  color: var(--color-muted);
+  display: flex;
+  flex-direction: column;
+  font-size: 0.82rem;
+  font-weight: 800;
+  gap: 0.35rem;
+}
+
+.formGrid input,
+.formGrid select,
+.templateForm select,
+.templateApplyForm select,
+.quickProformaForm input,
+.quickProformaForm select,
+.taskContentForm input,
+.taskStatusForm select,
+.dangerZone input {
+  width: 100%;
+  background: var(--color-control);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 0.48rem 0.6rem;
+  font: inherit;
+}
+
+.formGrid input:user-invalid,
+.formGrid select:user-invalid,
+.templateApplyForm select:user-invalid,
+.quickProformaForm input:user-invalid,
+.quickProformaForm select:user-invalid,
+.taskContentForm input:user-invalid,
+.taskStatusForm select:user-invalid,
+.dangerZone input:user-invalid {
+  border-color: rgb(220 38 38 / 0.6);
+  box-shadow: 0 0 0 1px rgb(220 38 38 / 0.2);
+}
+
+.templateForm {
+  border-top: 1px solid var(--color-border);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0.75rem;
+  margin-top: 1rem;
+  padding-top: 1rem;
+}
+
+.quickCreate {
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: var(--color-control-soft);
+  margin-top: 1rem;
+  padding: 0.85rem;
+}
+
+.quickCreate summary {
+  color: var(--color-accent);
+  cursor: pointer;
+  font-weight: 900;
+}
+
+.quickProformaForm {
+  display: grid;
+  grid-template-columns: minmax(16rem, 1.4fr) minmax(8rem, 0.5fr) minmax(7rem, 0.45fr) auto;
+  gap: 0.65rem;
+  margin-top: 0.75rem;
+}
+
+.helperText {
+  color: var(--color-muted);
+  font-size: 0.84rem;
+  margin: 0.65rem 0 0;
+}
+
+.full,
+.formActions {
+  grid-column: 1 / -1;
+}
+
+.formActions button,
+.templateForm button,
+.templateApplyForm button,
+.syncTrackingForm button,
+.quickProformaForm button {
+  background: var(--color-accent);
+  color: var(--color-accent-contrast);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 900;
+  padding: 0.75rem 1rem;
+  touch-action: manipulation;
+}
+
+.templateApplyForm button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.secondaryButton {
+  background: var(--color-hover) !important;
+  border: 1px solid var(--color-border) !important;
+  color: var(--color-text) !important;
+  margin-left: 0.5rem;
+}
+
+.secondaryBtn {
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  color: var(--color-text);
+  flex: 0 0 auto;
+  font-weight: 900;
+  padding: 0.62rem 0.85rem;
+  text-decoration: none;
+}
+
+.secondaryBtn:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+.rowActions {
+  align-items: flex-end;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  pointer-events: auto;
+  position: relative;
+  z-index: 3;
+}
+
+.rowActions :global(.proformaActions) {
+  gap: 0.35rem;
+}
+
+.rowActions :global(.proformaActions a),
+.rowActions :global(.proformaActions button) {
+  font-size: 0.76rem;
+  line-height: 1;
+  padding: 0.38rem 0.55rem;
+}
+
+.dangerZone {
+  border: 1px solid rgb(200 55 55 / 0.5);
+  border-radius: 8px;
+  background: rgb(200 55 55 / 0.08);
+  padding: 1rem;
+}
+
+.dangerZone summary {
+  color: #ff9b9b;
+  cursor: pointer;
+  font-weight: 900;
+}
+
+.dangerZone form {
+  display: grid;
+  gap: 0.75rem;
+  margin-top: 1rem;
+  max-width: 34rem;
+}
+
+.dangerZone p {
+  color: var(--color-muted);
+  margin: 0;
+}
+
+.dangerZone button {
+  background: var(--color-danger);
+  border: none;
+  border-radius: 8px;
+  color: var(--color-danger-contrast);
+  cursor: pointer;
+  font: inherit;
+  font-weight: 900;
+  padding: 0.75rem 1rem;
+  touch-action: manipulation;
+}
+
+.toolbar a:focus-visible,
+.workflowActions a:focus-visible,
+.formActions button:focus-visible,
+.formGrid input:focus-visible,
+.formGrid select:focus-visible,
+.templateForm button:focus-visible,
+.templateForm select:focus-visible,
+.templateApplyForm button:focus-visible,
+.templateApplyForm select:focus-visible,
+.syncTrackingForm button:focus-visible,
+.quickProformaForm button:focus-visible,
+.quickProformaForm input:focus-visible,
+.quickProformaForm select:focus-visible,
+.taskContentForm input:focus-visible,
+.taskOrderActions button:focus-visible,
+.taskInlineActions button:focus-visible,
+.taskStatusForm select:focus-visible,
+.dangerZone button:focus-visible,
+.dangerZone input:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: var(--color-control);
+  padding: 0.85rem;
+}
+
+.row a {
+  color: var(--color-accent);
+  font-weight: 900;
+  text-decoration: none;
+}
+
+.row strong {
+  color: var(--color-accent);
+  white-space: nowrap;
+}
+
+.tableWrap {
+  overflow-x: auto;
+  margin-top: 1rem;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 38rem;
+}
+
+.table th,
+.table td {
+  border-bottom: 1px solid var(--color-border);
+  padding: 0.65rem;
+  text-align: left;
+}
+
+.table th {
+  color: var(--color-muted);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+}
+
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 2.5rem 1rem;
+  text-align: center;
+  color: var(--color-muted);
+}
+
+.emptyState svg {
+  opacity: 0.3;
+  margin-bottom: 0.25rem;
+}
+
+.emptyState p {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.emptyState span {
+  font-size: 0.8rem;
+  opacity: 0.7;
+}
+
+.stickyHeader {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 0.65rem 0.75rem;
+}
+
+.headerMain {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.65rem;
+}
+
+.headerMeta {
+  color: var(--color-muted);
+  font-size: 0.82rem;
+  margin: 0.15rem 0;
+}
+
+.headerLink {
+  color: var(--color-accent);
+  text-decoration: none;
+  font-weight: 800;
+}
+
+.headerLink:hover {
+  text-decoration: underline;
+}
+
+.primaryBtn {
+  background: var(--color-accent);
+  color: var(--color-accent-contrast);
+  border: none;
+  border-radius: 8px;
+  padding: 0.65rem 1rem;
+  font: inherit;
+  font-weight: 900;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.primaryBtn:hover {
+  opacity: 0.85;
+}
+
+.kpiRow {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 0.55rem;
+}
+
+.kpiCard {
+  background: linear-gradient(180deg, var(--color-hover), transparent), var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 0.6rem 0.7rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.12rem;
+  min-height: 3.55rem;
+}
+
+.kpiValue {
+  font-size: 1rem;
+  font-weight: 900;
+  color: var(--color-accent);
+  line-height: 1;
+}
+
+.kpiLabel {
+  font-size: 0.7rem;
+  line-height: 1.2;
+  color: var(--color-muted);
+}
+
+.sectionHeader {
+  align-items: flex-start;
+  display: flex;
+  gap: 0.65rem;
+  justify-content: space-between;
+}
+
+.sectionHeader h2,
+.sectionHeader p {
+  margin: 0;
+}
+
+.sectionHeader p {
+  color: var(--color-muted);
+  font-size: 0.85rem;
+  margin-top: 0.25rem;
+}
+
+.splitRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.65rem;
+}
+
+.progressBars {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  margin-top: 0.45rem;
+}
+
+.progressRow {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.progressRow span {
+  font-size: 0.82rem;
+  color: var(--color-muted);
+  min-width: 12rem;
+}
+
+.progressTrack {
+  flex: 1;
+  height: 6px;
+  background: var(--color-control);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  background: var(--color-accent);
+  border-radius: 4px;
+  transition: width 0.3s;
+}
+
+.clientBox {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-top: 0.75rem;
+}
+
+.clientBox a {
+  color: var(--color-accent);
+  font-weight: 900;
+  text-decoration: none;
+}
+
+.clientBox span {
+  color: var(--color-muted);
+  font-size: 0.85rem;
+}
+
+.docTitle {
+  color: var(--color-accent);
+  font-weight: 900;
+  text-decoration: none;
+}
+
+.docTitle:hover {
+  text-decoration: underline;
+}
+
+.documentList,
+.checklistGroups,
+.checklistItems {
+  display: flex;
+  flex-direction: column;
+}
+
+.documentList {
+  gap: 0.45rem;
+  margin-top: 0.5rem;
+}
+
+.documentRow {
+  align-items: flex-start;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: var(--color-control-soft);
+  display: flex;
+  gap: 0.65rem;
+  justify-content: space-between;
+  padding: 0.55rem 0.65rem;
+  position: relative;
+}
+
+.documentRow:hover {
+  border-color: color-mix(in srgb, var(--color-accent) 45%, var(--color-border));
+}
+
+.documentRow > :not(.rowOverlay) {
+  position: relative;
+  z-index: 2;
+}
+
+.documentRow > :not(.rowOverlay, .rowActions) {
+  pointer-events: none;
+}
+
+.rowOverlay {
+  border-radius: 8px;
+  inset: 0;
+  position: absolute;
+  z-index: 1;
+}
+
+.documentRow p {
+  color: var(--color-muted);
+  font-size: 0.82rem;
+  margin: 0.2rem 0 0;
+}
+
+.taskBoardHeader {
+  align-items: flex-start;
+  display: grid;
+  gap: 0.65rem;
+  grid-template-columns: minmax(0, 1fr) minmax(12rem, 0.32fr);
+}
+
+.taskBoardHeader h2,
+.taskBoardHeader p {
+  margin: 0;
+}
+
+.taskBoardHeader p {
+  color: var(--color-muted);
+  font-size: 0.86rem;
+  margin-top: 0.25rem;
+}
+
+.taskProgressSummary {
+  display: grid;
+  gap: 0.45rem;
+  text-align: right;
+}
+
+.taskProgressSummary strong {
+  color: var(--color-accent);
+  font-size: 1.4rem;
+  line-height: 1;
+}
+
+.syncTrackingForm {
+  align-items: center;
+  background: rgb(34 197 94 / 0.08);
+  border: 1px solid rgb(34 197 94 / 0.28);
+  border-radius: 8px;
+  display: grid;
+  gap: 0.55rem;
+  grid-template-columns: minmax(0, 1fr) auto;
+  margin-top: 0.6rem;
+  padding: 0.6rem;
+}
+
+.syncTrackingForm div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  min-width: 0;
+}
+
+.syncTrackingForm strong {
+  color: #86efac;
+  font-size: 0.9rem;
+}
+
+.syncTrackingForm span {
+  color: var(--color-muted);
+  font-size: 0.82rem;
+}
+
+.templateApplyForm {
+  align-items: end;
+  background: var(--color-control-soft);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  display: grid;
+  gap: 0.55rem;
+  grid-template-columns: minmax(0, 1fr) auto;
+  margin-top: 0.6rem;
+  padding: 0.6rem;
+}
+
+.templateApplyForm label {
+  color: var(--color-muted);
+  display: flex;
+  flex-direction: column;
+  font-size: 0.82rem;
+  font-weight: 800;
+  gap: 0.35rem;
+}
+
+.checklistGroups {
+  gap: 0.6rem;
+  margin-top: 0.6rem;
+}
+
+.checklistGroup {
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: var(--color-control-soft);
+  overflow: hidden;
+}
+
+.groupHeader {
+  align-items: center;
+  border-bottom: 1px solid var(--color-border);
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: minmax(0, 1fr) minmax(10rem, 0.35fr);
+  padding: 0.85rem 1rem;
+}
+
+.groupHeader h3,
+.groupHeader p {
+  margin: 0;
+}
+
+.groupHeader h3 {
+  font-size: 0.98rem;
+}
+
+.groupHeader p {
+  color: var(--color-muted);
+  font-size: 0.78rem;
+  margin-top: 0.2rem;
+}
+
+.checklistItems {
+  gap: 0;
+}
+
+.checklistItem {
+  align-items: center;
+  display: grid;
+  gap: 0.6rem;
+  grid-template-columns: minmax(20rem, 1fr) minmax(8rem, auto) minmax(5.8rem, auto) minmax(4.8rem, auto) auto;
+  padding: 0.42rem 0.75rem;
+}
+
+.checklistItem + .checklistItem {
+  border-top: 1px solid var(--color-hover);
+}
+
+.checklistItemDone {
+  background: rgb(34 197 94 / 0.08);
+}
+
+.checklistItemProgress {
+  background: rgb(59 130 246 / 0.08);
+}
+
+.checklistItemDone .taskName {
+  color: #86efac;
+  text-decoration: line-through;
+}
+
+.taskHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.taskCategory,
+.taskCategoryBadge {
+  font-size: 0.72rem;
+  color: var(--color-muted);
+  text-transform: uppercase;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+
+.statusBadge {
+  font-size: 0.68rem;
+  font-weight: 800;
+  padding: 0.15rem 0.45rem;
+  border-radius: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.statusdraft { background: var(--color-hover); color: var(--color-muted); }
+.statussent { background: rgb(59 130 246 / 0.15); color: #60a5fa; }
+.statusaccepted { background: rgb(34 197 94 / 0.15); color: #4ade80; }
+.statusrejected { background: rgb(220 38 38 / 0.12); color: #f87171; }
+.statuscompleted { background: rgb(34 197 94 / 0.1); color: #6ee7b7; }
+
+.taskName,
+.taskNameInput {
+  font-size: 0.84rem;
+  line-height: 1.25;
+  min-width: 0;
+}
+
+.taskCategoryBadge {
+  align-self: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.onBudget {
+  color: #4ade80;
+  font-weight: 800;
+}
+
+.overBudget {
+  color: #f87171;
+  font-weight: 800;
+}
+
+.taskNotes {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 0.78rem;
+  color: var(--color-muted);
+  margin: 0;
+}
+
+.taskContentForm,
+.taskStatusForm,
+.taskOrderActions,
+.taskInlineActions {
+  align-items: center;
+  display: flex;
+  gap: 0.35rem;
+}
+
+.taskContentForm {
+  display: contents;
+}
+
+.taskTextFields {
+  align-items: center;
+  display: grid;
+  column-gap: 0.25rem;
+  grid-column: 1;
+  grid-row: 1;
+  grid-template-columns: minmax(5.5rem, max-content) minmax(8rem, 0.75fr) minmax(12rem, 1.35fr);
+  min-width: 0;
+}
+
+.taskHoursFields {
+  align-items: center;
+  display: flex;
+  gap: 0.15rem;
+}
+
+.taskContentForm input {
+  background: var(--color-control);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  color: var(--color-text);
+  font: inherit;
+  font-size: 0.78rem;
+  padding: 0.3rem 0.4rem;
+}
+
+.taskTextFields input:hover,
+.taskTextFields input:focus,
+.taskHoursFields input:hover,
+.taskHoursFields input:focus {
+  border-color: var(--color-accent);
+}
+
+.taskStatusForm select,
+.taskOrderActions button,
+.taskInlineActions button {
+  background: var(--color-control);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  color: var(--color-text);
+  font: inherit;
+  font-size: 0.76rem;
+  font-weight: 800;
+  padding: 0.35rem 0.55rem;
+}
+
+.taskStatusForm select {
+  cursor: pointer;
+  max-width: 8rem;
+}
+
+.checklistItemDone .taskStatusForm select {
+  border-color: rgb(34 197 94 / 0.45);
+  color: #86efac;
+}
+
+.checklistItemProgress .taskStatusForm select {
+  border-color: rgb(59 130 246 / 0.45);
+  color: #93c5fd;
+}
+
+.taskStatusForm {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.taskHoursFields {
+  grid-column: 3;
+  grid-row: 1;
+}
+
+.taskHoursFields input {
+  text-align: right;
+  width: 3.8rem;
+}
+
+.taskHoursFields span {
+  color: var(--color-muted);
+  font-size: 0.76rem;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.taskInlineActions {
+  justify-content: flex-end;
+}
+
+.taskInlineActions button {
+  cursor: pointer;
+}
+
+.taskOrderActions {
+  grid-column: 4;
+  grid-row: 1;
+  justify-content: center;
+}
+
+.taskInlineActions {
+  grid-column: 5;
+  grid-row: 1;
+}
+
+.taskOrderActions form {
+  display: inline-flex;
+}
+
+.taskInlineActions form {
+  display: inline-flex;
+}
+
+.taskOrderActions button,
+.taskInlineActions button {
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.taskOrderActions button:disabled {
+  cursor: not-allowed;
+  opacity: 0.35;
+}
+
+.taskStatusForm select:hover,
+.taskOrderActions button:hover,
+.taskInlineActions button:hover {
+  border-color: var(--color-accent);
+}
+
+.dangerButton {
+  border-color: rgb(200 55 55 / 0.5) !important;
+  color: #ffb1b1 !important;
+}
+
+.emptyText {
+  color: var(--color-muted);
+  margin: 1rem 0 0;
+}
+
+.costTable {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-top: 0.75rem;
+}
+
+.costRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.55rem 0;
+  border-bottom: 1px solid var(--color-hover);
+}
+
+.costMeta {
+  font-size: 0.78rem;
+  color: var(--color-muted);
+  margin: 0.1rem 0 0;
+}
+
+.costTotal {
+  font-weight: 900;
+  color: var(--color-accent);
+  white-space: nowrap;
+}
+
+.costTotalRow {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.75rem 0;
+  border-top: 2px solid var(--color-border);
+  font-size: 1.1rem;
+}
+
+.costTotalRow span {
+  color: var(--color-accent);
+  font-weight: 900;
+}
+
+@keyframes toastIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 960px) {
+  .kpiRow,
+  .splitRow,
+  .formGrid,
+  .taskBoardHeader,
+  .templateApplyForm,
+  .syncTrackingForm,
+  .groupHeader,
+  .templateForm,
+  .quickProformaForm {
+    grid-template-columns: 1fr;
+  }
+
+  .sectionHeader,
+  .documentRow,
+  .progressRow {
+    flex-direction: column;
+  }
+
+  .checklistItem {
+    align-items: start;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .taskStatusForm,
+  .taskHoursFields,
+  .taskOrderActions,
+  .taskInlineActions {
+    grid-column: 1;
+    grid-row: auto;
+    justify-content: flex-start;
+  }
+
+  .taskInlineActions {
+    grid-column: 1 / -1;
+  }
+
+  .taskTextFields {
+    grid-template-columns: 1fr;
+  }
+
+  .taskProgressSummary {
+    text-align: left;
+  }
+
+  .workflowPanel {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .workflowActions {
+    justify-content: flex-start;
+  }
+
+  .headerMain {
+    flex-direction: column;
+  }
+}

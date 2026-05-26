@@ -1,0 +1,606 @@
+.panel h2 {
+  margin: 0;
+}
+
+.row p {
+  color: var(--color-muted);
+}
+
+.kicker {
+  color: var(--color-accent);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.panel,
+.row {
+  background:
+    linear-gradient(180deg, var(--color-hover), transparent),
+    var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+}
+
+.panel {
+  padding: 0.75rem;
+}
+
+.panel,
+.panelFeatured {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.panelFeatured {
+  background:
+    linear-gradient(180deg, var(--color-hover), transparent),
+    var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 0.75rem;
+}
+
+.panelFeatured h2 {
+  margin: 0;
+}
+
+.panel h3,
+.panelFeatured h3,
+.quickActionsPanel h2,
+.contextPanel h1 {
+  margin: 0;
+}
+
+.contextPanel,
+.quickActionsPanel {
+  background:
+    linear-gradient(180deg, var(--color-hover), transparent),
+    var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 0.75rem;
+}
+
+.contextPanel {
+  align-items: flex-start;
+  display: flex;
+  gap: 0.75rem;
+  justify-content: space-between;
+}
+
+.contextPanel p {
+  color: var(--color-muted);
+  margin: 0.35rem 0 0;
+}
+
+.secondaryLink {
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  color: var(--color-text);
+  flex: 0 0 auto;
+  font-weight: 800;
+  padding: 0.45rem 0.65rem;
+  text-decoration: none;
+}
+
+.secondaryLink:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+.dashboardGrid {
+  display: grid;
+  gap: 0.65rem;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+}
+
+.quickActionsPanel {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.quickActionsHeader {
+  align-items: flex-start;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: space-between;
+}
+
+.contextChip {
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  color: var(--color-accent);
+  font-size: 0.78rem;
+  font-weight: 800;
+  padding: 0.25rem 0.5rem;
+}
+
+.formField {
+  color: var(--color-muted);
+  display: flex;
+  flex-direction: column;
+  font-size: 0.82rem;
+  font-weight: 800;
+  gap: 0.25rem;
+}
+
+.panel input,
+.panel select,
+.panelFeatured input,
+.panelFeatured select {
+  width: 100%;
+  background: var(--color-control);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 0.5rem 0.65rem;
+  font: inherit;
+  font-weight: 700;
+}
+
+.panel select option,
+.panelFeatured select option {
+  background: var(--color-option-background);
+  color: var(--color-text);
+  font-weight: 700;
+}
+
+.panel input:user-invalid,
+.panel select:user-invalid,
+.panelFeatured input:user-invalid,
+.panelFeatured select:user-invalid {
+  border-color: rgb(220 38 38 / 0.6);
+  box-shadow: 0 0 0 1px rgb(220 38 38 / 0.2);
+}
+
+.panel button,
+.panelFeatured button {
+  background: var(--color-accent);
+  color: var(--color-accent-contrast);
+  border: none;
+  border-radius: 8px;
+  padding: 0.52rem 0.75rem;
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+.panel button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.panelFeatured p {
+  color: var(--color-muted);
+  font-size: 0.82rem;
+  margin: 0;
+}
+
+.panel:focus-within,
+.panelFeatured:focus-within {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--color-accent) 45%, transparent);
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.row {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  justify-content: space-between;
+  align-items: start;
+  gap: 0.65rem;
+  padding: 0.65rem 0.75rem;
+}
+
+.row > :not(.rowOverlay) {
+  position: relative;
+  z-index: 2;
+}
+
+.row > :not(.rowOverlay, .rowActions, .proformaActions) {
+  pointer-events: none;
+}
+
+.clickableRow {
+  cursor: pointer;
+}
+
+.clickableRow:hover {
+  border-color: color-mix(in srgb, var(--color-accent) 45%, var(--color-border));
+}
+
+.rowOverlay {
+  border-radius: 8px;
+  inset: 0;
+  position: absolute;
+  z-index: 1;
+}
+
+.docTitle {
+  color: var(--color-accent);
+  font-weight: 900;
+}
+
+.projectListMain {
+  min-width: 0;
+}
+
+.projectListMain p {
+  margin: 0.15rem 0 0;
+}
+
+.projectListSummary {
+  font-size: 0.82rem;
+}
+
+.projectListTotal {
+  align-self: center;
+}
+
+.row span {
+  color: var(--color-accent);
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.rowActions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.35rem;
+  pointer-events: auto;
+  z-index: 3;
+}
+
+.docLink {
+  color: var(--color-accent);
+  font-weight: 900;
+  text-decoration: none;
+}
+
+.docLink:hover {
+  text-decoration: underline;
+}
+
+.proformaActions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.35rem;
+  pointer-events: auto;
+  z-index: 3;
+}
+
+.proformaActions a,
+.proformaActions button {
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: var(--color-hover);
+  color: var(--color-text);
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.76rem;
+  font-weight: 800;
+  line-height: 1;
+  padding: 0.38rem 0.55rem;
+  text-decoration: none;
+  touch-action: manipulation;
+}
+
+.proformaActions a:hover,
+.proformaActions button:hover {
+  border-color: var(--color-accent);
+}
+
+.proformaActions .dangerButton,
+.dangerButton {
+  border-color: rgb(200 55 55 / 0.5);
+  color: #ffb1b1;
+}
+
+.inlineDeleteForm {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: flex-end;
+}
+
+.inlineDeleteForm label {
+  color: var(--color-muted);
+  display: flex;
+  flex-direction: column;
+  font-size: 0.72rem;
+  gap: 0.2rem;
+}
+
+.inlineDeleteForm input {
+  background: var(--color-control);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 0.45rem 0.6rem;
+  width: 10rem;
+}
+
+.panel button:focus-visible,
+.panel input:focus-visible,
+.panel select:focus-visible,
+.panelFeatured button:focus-visible,
+.panelFeatured input:focus-visible,
+.panelFeatured select:focus-visible,
+.rowOverlay:focus-visible,
+.proformaActions a:focus-visible,
+.proformaActions button:focus-visible,
+.inlineDeleteForm input:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 2.5rem 1rem;
+  text-align: center;
+  color: var(--color-muted);
+}
+
+.emptyState svg {
+  opacity: 0.3;
+  margin-bottom: 0.25rem;
+}
+
+.emptyState p {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.emptyState span {
+  font-size: 0.8rem;
+  opacity: 0.7;
+}
+
+.kpiRow {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+  gap: 0.55rem;
+}
+
+.kpiCard {
+  background: linear-gradient(180deg, var(--color-hover), transparent), var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 0.62rem 0.7rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.12rem;
+  min-height: 3.65rem;
+}
+
+.kpiValue {
+  font-size: 1.05rem;
+  font-weight: 900;
+  color: var(--color-accent);
+  line-height: 1;
+}
+
+.kpiLabel {
+  font-size: 0.7rem;
+  color: var(--color-muted);
+  line-height: 1.2;
+}
+
+.kpiAlert {
+  font-size: 0.75rem;
+  color: #dc2626;
+  font-weight: 700;
+}
+
+.activityList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  margin-top: 0.45rem;
+}
+
+.activityItem {
+  display: flex;
+  gap: 0.4rem;
+  align-items: baseline;
+  font-size: 0.78rem;
+  padding: 0.25rem 0;
+  border-bottom: 1px solid var(--color-hover);
+}
+
+.activityAction {
+  color: var(--color-accent);
+  font-weight: 800;
+  text-transform: lowercase;
+}
+
+.activityTarget {
+  color: var(--color-muted);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+}
+
+.activityName {
+  color: var(--color-text);
+  font-weight: 600;
+}
+
+.activityTime {
+  margin-left: auto;
+  color: var(--color-muted);
+  font-size: 0.72rem;
+  white-space: nowrap;
+}
+
+.emptyText {
+  color: var(--color-muted);
+  font-size: 0.8rem;
+  margin: 0.55rem 0;
+}
+
+.listLimitNote {
+  border-top: 1px solid var(--color-border);
+  color: var(--color-muted);
+  font-size: 0.78rem;
+  font-weight: 700;
+  margin: 0.35rem 0 0;
+  padding-top: 0.45rem;
+}
+
+.projectProgressList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 0.45rem;
+}
+
+.projectProgressRow {
+  background: var(--color-control-soft);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 0.58rem 0.65rem;
+  position: relative;
+}
+
+.projectProgressRow:hover {
+  border-color: color-mix(in srgb, var(--color-accent) 45%, var(--color-border));
+}
+
+.projectProgressRow > :not(.rowOverlay) {
+  position: relative;
+  z-index: 2;
+}
+
+.projectProgressRow > :not(.rowOverlay) {
+  pointer-events: none;
+}
+
+.projectProgressHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.35rem;
+}
+
+.projectProgressName {
+  color: var(--color-accent);
+  font-weight: 800;
+  text-decoration: none;
+  font-size: 0.84rem;
+}
+
+.projectProgressName:hover {
+  text-decoration: underline;
+}
+
+.projectProgressClient {
+  color: var(--color-muted);
+  font-size: 0.78rem;
+}
+
+.projectProgressBars {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.progressLabeled {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.progressLabeled span {
+  font-size: 0.72rem;
+  color: var(--color-muted);
+  min-width: 11rem;
+}
+
+.progressTrack {
+  flex: 1;
+  height: 5px;
+  background: var(--color-control);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  background: var(--color-accent);
+  border-radius: 4px;
+  transition: width 0.3s;
+}
+
+.statusBadge {
+  font-size: 0.7rem;
+  font-weight: 800;
+  padding: 0.15rem 0.45rem;
+  border-radius: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.statusdraft { background: var(--color-hover); color: var(--color-muted); }
+.statussent { background: rgb(59 130 246 / 0.15); color: #60a5fa; }
+.statusaccepted { background: rgb(34 197 94 / 0.15); color: #4ade80; }
+.statusrejected { background: rgb(220 38 38 / 0.12); color: #f87171; }
+.statuscompleted { background: rgb(34 197 94 / 0.1); color: #6ee7b7; }
+
+.proformaStatusTag {
+  font-size: 0.72rem;
+  color: var(--color-muted);
+  text-transform: uppercase;
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.65rem;
+  align-items: stretch;
+}
+
+@keyframes toastIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 960px) {
+  .kpiRow,
+  .dashboardGrid,
+  .formGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .contextPanel {
+    flex-direction: column;
+  }
+
+  .proformaActions {
+    justify-content: flex-start;
+  }
+}

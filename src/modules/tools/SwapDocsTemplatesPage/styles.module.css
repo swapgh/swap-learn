@@ -1,0 +1,333 @@
+.formPanel {
+  background: linear-gradient(180deg, var(--color-hover), transparent), var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 1.25rem;
+}
+
+.formPanel h2 {
+  margin: 0 0 1rem;
+}
+
+.formPanel h3 {
+  margin: 1rem 0 0.5rem;
+  font-size: 0.95rem;
+  color: var(--color-muted);
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+.formGrid label {
+  color: var(--color-muted);
+  display: flex;
+  flex-direction: column;
+  font-size: 0.82rem;
+  font-weight: 800;
+  gap: 0.35rem;
+}
+
+.formGrid input,
+.formGrid select {
+  width: 100%;
+  background: var(--color-control);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 0.7rem 0.85rem;
+  font: inherit;
+}
+
+.full {
+  grid-column: 1 / -1;
+}
+
+.linesWrap {
+  overflow-x: auto;
+  margin-bottom: 0.5rem;
+}
+
+.linesTable {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 36rem;
+}
+
+.linesTable th,
+.linesTable td {
+  border-bottom: 1px solid var(--color-border);
+  padding: 0.4rem 0.5rem;
+  text-align: left;
+  font-size: 0.85rem;
+}
+
+.linesTable th {
+  color: var(--color-muted);
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.linesTable td input {
+  width: 100%;
+  background: var(--color-control);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  padding: 0.45rem 0.6rem;
+  font: inherit;
+  font-size: 0.85rem;
+  box-sizing: border-box;
+}
+
+.linesTable td input[type="number"] {
+  width: 6rem;
+}
+
+.amountCell {
+  color: var(--color-accent);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.removeBtn {
+  background: none;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  color: var(--color-muted);
+  cursor: pointer;
+  font-size: 0.85rem;
+  padding: 0.3rem 0.5rem;
+}
+
+.removeBtn:hover {
+  border-color: #dc2626;
+  color: #dc2626;
+}
+
+.removeBtn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.addLineBtn {
+  background: none;
+  border: 1px dashed var(--color-border);
+  border-radius: 8px;
+  color: var(--color-accent);
+  cursor: pointer;
+  font: inherit;
+  font-weight: 800;
+  padding: 0.5rem 1rem;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.addLineBtn:hover {
+  border-color: var(--color-accent);
+}
+
+.formActions {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.formActions button[type="submit"] {
+  background: var(--color-accent);
+  color: var(--color-accent-contrast);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 900;
+  padding: 0.75rem 1rem;
+}
+
+.formActions button[type="submit"]:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.cancelBtn {
+  background: var(--color-hover);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  color: var(--color-text);
+  cursor: pointer;
+  font: inherit;
+  font-weight: 800;
+  padding: 0.75rem 1rem;
+}
+
+/* Template list */
+
+.categorySection {
+  margin-bottom: 1rem;
+}
+
+.categorySection h2 {
+  margin: 0 0 0.75rem;
+  font-size: 1.1rem;
+}
+
+.templateGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1rem;
+}
+
+.templateCard {
+  background: linear-gradient(180deg, var(--color-hover), transparent), var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cardTitle {
+  font-size: 0.95rem;
+}
+
+.lineCount {
+  color: var(--color-muted);
+  font-size: 0.78rem;
+  background: var(--color-control-soft);
+  border-radius: 12px;
+  padding: 0.2rem 0.6rem;
+}
+
+.cardDesc {
+  color: var(--color-muted);
+  font-size: 0.82rem;
+  margin: 0;
+}
+
+.cardActions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.cardActionBtn,
+.cardActionBtnDanger {
+  background: none;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 800;
+  padding: 0.35rem 0.7rem;
+}
+
+.cardActionBtn {
+  color: var(--color-accent);
+}
+
+.cardActionBtnDanger {
+  color: var(--color-muted);
+}
+
+.cardActionBtnDanger:hover {
+  border-color: #dc2626;
+  color: #dc2626;
+}
+
+.linesPreview {
+  margin-top: 0.25rem;
+}
+
+.linesPreview summary {
+  cursor: pointer;
+  font-size: 0.78rem;
+  color: var(--color-muted);
+  font-weight: 700;
+}
+
+.previewTableWrap {
+  overflow-x: auto;
+  margin-top: 0.5rem;
+}
+
+.previewTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.82rem;
+}
+
+.previewTable th,
+.previewTable td {
+  border-bottom: 1px solid var(--color-border);
+  padding: 0.35rem 0.5rem;
+  text-align: left;
+}
+
+.previewTable th {
+  color: var(--color-muted);
+  font-size: 0.7rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.previewTable td:not(:first-child) {
+  text-align: right;
+}
+
+.previewTable th:not(:first-child) {
+  text-align: right;
+}
+
+/* Overlay / confirm */
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgb(0 0 0 / 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.confirmBox {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  padding: 1.5rem;
+  max-width: 28rem;
+  width: 90%;
+}
+
+.confirmBox h3 {
+  margin: 0 0 0.5rem;
+}
+
+.confirmBox p {
+  color: var(--color-muted);
+  font-size: 0.9rem;
+  margin: 0 0 1rem;
+}
+
+.confirmBox input {
+  width: 100%;
+  background: var(--color-control);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 0.7rem 0.85rem;
+  font: inherit;
+  margin-bottom: 1rem;
+  box-sizing: border-box;
+}

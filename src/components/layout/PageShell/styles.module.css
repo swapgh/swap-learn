@@ -1,0 +1,12 @@
+.shell {
+  display: grid;
+  padding: 0 clamp(20px, 5vw, 72px);
+}
+
+.shell > *:first-child {
+  margin-top: clamp(40px, 6vw, 80px);
+}
+
+.shell > * + * {
+  margin-top: clamp(64px, 10vw, 120px);
+}

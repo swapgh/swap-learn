@@ -1,0 +1,24 @@
+.switcher {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.switcher button {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius-pill);
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 0.78rem;
+  font-weight: 600;
+  font-family: inherit;
+  min-height: 30px;
+  padding: 0 12px;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.switcher button:hover {
+  background: var(--accent-hover);
+  color: var(--text-main);
+}

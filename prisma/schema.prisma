@@ -1,0 +1,545 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum SwapJobState {
+  new
+  reviewed
+  shortlisted
+  applied
+  follow_up
+  interview
+  rejected
+  archived
+}
+
+enum ProjectStatus {
+  draft
+  sent
+  accepted
+  rejected
+  completed
+}
+
+enum ProformaStatus {
+  draft
+  sent
+  accepted
+  rejected
+  converted
+  cancelled
+}
+
+enum TaskStatus {
+  pending
+  in_progress
+  done
+}
+
+enum BusinessLineType {
+  own_work
+  external_cost
+  recurring_service
+  margin
+}
+
+enum BillingUnit {
+  hour
+  day
+  fixed
+  monthly
+  yearly
+}
+
+enum ClientServiceStatus {
+  active
+  pending
+  suspended
+  expired
+  cancelled
+}
+
+enum IvaType {
+  standard
+  reverse_charge
+  export
+  exempt
+}
+
+enum InvoiceStatus {
+  draft
+  sent
+  paid
+  cancelled
+  overdue
+}
+
+enum DocumentEmailType {
+  proforma
+  invoice
+}
+
+enum DocumentEmailStatus {
+  sent
+  failed
+}
+
+model SwapJob {
+  id             String       @id @default(uuid())
+  userId         String       @map("user_id")
+  ownerEmail     String       @map("owner_email")
+  title          String
+  company        String?
+  location       String?
+  country        String?      @default("España")
+  modality       String       @default("remote")
+  source         String       @default("manual")
+  salary         String?
+  url            String?
+  description    String?
+  notes          String?
+  state          SwapJobState @default(new)
+  score          Int          @default(0)
+  fitScore       Int          @default(0) @map("fit_score")
+  viabilityScore Int          @default(0) @map("viability_score")
+  qualityScore   Int          @default(0) @map("quality_score")
+  timingScore    Int          @default(0) @map("timing_score")
+  recommendedCv  String       @default("CV Español") @map("recommended_cv")
+  action         String       @default("review")
+  technologies   Json         @default("[]")
+  positiveFlags  Json         @default("[]") @map("positive_flags")
+  riskFlags      Json         @default("[]") @map("risk_flags")
+  dateFound      DateTime     @default(now()) @map("date_found")
+  dateApplied    DateTime?    @map("date_applied")
+  followUpDate   DateTime?    @map("follow_up_date")
+  createdAt      DateTime     @default(now()) @map("created_at")
+  updatedAt      DateTime     @updatedAt @map("updated_at")
+
+  @@map("swap_jobs")
+}
+
+model Client {
+  id        String          @id @default(uuid())
+  code      String?         @unique
+  name      String
+  nifCif    String?         @map("nif_cif")
+  address   String?
+  phone     String?
+  email     String?
+  country   String          @default("ES")
+  isCompany Boolean         @default(true) @map("is_company")
+  vatId     String?         @map("vat_id")
+  projects  Project[]
+  services  ClientService[]
+  createdAt DateTime        @default(now()) @map("created_at")
+  updatedAt DateTime        @updatedAt @map("updated_at")
+
+  @@map("clients")
+}
+
+model Project {
+  id             String           @id @default(uuid())
+  code           String?          @unique
+  clientId       String           @map("client_id")
+  name           String
+  status         ProjectStatus    @default(draft)
+  createdAt      DateTime         @default(now()) @map("created_at")
+  updatedAt      DateTime         @updatedAt @map("updated_at")
+  client         Client           @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  estimations    EstimationItem[]
+  costItems      CostItem[]
+  workItems      WorkItem[]
+  proformas      Proforma[]
+  clientServices ClientService[]
+
+  @@map("projects")
+}
+
+model EstimationItem {
+  id          String  @id @default(uuid())
+  projectId   String  @map("project_id")
+  category    String
+  task        String
+  optimistic  Float
+  probable    Float
+  pessimistic Float
+  tpe         Float
+  project     Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  @@map("estimation_items")
+}
+
+model CostItem {
+  id               String           @id @default(uuid())
+  projectId        String           @map("project_id")
+  stage            String
+  task             String
+  hours            Float
+  unitCost         Float            @map("unit_cost")
+  total            Float
+  lineType         BusinessLineType @default(own_work) @map("line_type")
+  unitType         BillingUnit      @default(hour) @map("unit_type")
+  internalUnitCost Float            @default(0) @map("internal_unit_cost")
+  clientUnitPrice  Float            @default(0) @map("client_unit_price")
+  margin           Float            @default(0)
+  provider         String?
+  isRecurring      Boolean          @default(false) @map("is_recurring")
+  recurrenceMonths Int?             @map("recurrence_months")
+  renewalDate      DateTime?        @map("renewal_date")
+  notes            String?
+  project          Project          @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  @@map("cost_items")
+}
+
+model WorkItem {
+  id             String           @id @default(uuid())
+  projectId      String           @map("project_id")
+  proformaItemId String?          @map("proforma_item_id")
+  category       String
+  task           String
+  estimatedHours Float            @default(0) @map("estimated_hours")
+  actualHours    Float            @default(0) @map("actual_hours")
+  lineType       BusinessLineType @default(own_work) @map("line_type")
+  hourlyRate     Float            @default(0) @map("hourly_rate")
+  billable       Boolean          @default(true)
+  status         TaskStatus       @default(pending)
+  sortOrder      Int              @default(0) @map("sort_order")
+  notes          String?
+  startedAt      DateTime?        @map("started_at")
+  completedAt    DateTime?        @map("completed_at")
+  project        Project          @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  proformaItem   ProformaItem?    @relation(fields: [proformaItemId], references: [id], onDelete: SetNull)
+
+  @@map("work_items")
+}
+
+model Proforma {
+  id        String             @id @default(uuid())
+  projectId String             @map("project_id")
+  number    String             @unique
+  issueDate DateTime           @default(now()) @map("issue_date")
+  subtotal  Float
+  discount  Float              @default(0)
+  ivaRate   Float              @default(21) @map("iva_rate")
+  ivaAmount Float              @default(0) @map("iva_amount")
+  total     Float
+  ivaType   IvaType            @default(standard) @map("iva_type")
+  paymentMethod String         @default("bank_transfer") @map("payment_method")
+  paymentTerms  String?        @map("payment_terms")
+  notes     String?
+  status    ProformaStatus     @default(draft)
+  createdAt DateTime           @default(now()) @map("created_at")
+  updatedAt DateTime           @updatedAt @map("updated_at")
+  project   Project            @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  items     ProformaItem[]
+  invoices  Invoice[]
+  emailLogs DocumentEmailLog[]
+
+  @@map("proformas")
+}
+
+model ProformaItem {
+  id               String           @id @default(uuid())
+  proformaId       String           @map("proforma_id")
+  description      String
+  hours            Float
+  rate             Float
+  amount           Float
+  lineType         BusinessLineType @default(own_work) @map("line_type")
+  unitType         BillingUnit      @default(hour) @map("unit_type")
+  billingUnit      BillingUnit?     @map("billing_unit")
+  quantity         Float?
+  internalCost     Float            @default(0) @map("internal_cost")
+  clientPrice      Float            @default(0) @map("client_price")
+  margin           Float            @default(0)
+  provider         String?
+  providerName     String?          @map("provider_name")
+  isRecurring      Boolean          @default(false) @map("is_recurring")
+  recurrenceMonths Int?             @map("recurrence_months")
+  renewsAt         DateTime?        @map("renews_at")
+  proforma         Proforma         @relation(fields: [proformaId], references: [id], onDelete: Cascade)
+  workItems        WorkItem[]
+  clientServices   ClientService[]
+
+  @@map("proforma_items")
+}
+
+model ProformaCounter {
+  id   String @id
+  year Int
+  seq  Int    @default(0)
+
+  @@map("proforma_counters")
+}
+
+model Service {
+  id              String           @id @default(uuid())
+  name            String
+  description     String?
+  category        String?
+  lineType        BusinessLineType @default(own_work) @map("line_type")
+  provider        String?
+  defaultUnitType BillingUnit      @default(hour) @map("default_unit_type")
+  isActive        Boolean          @default(true)
+  rates           ServiceRate[]
+  createdAt       DateTime         @default(now()) @map("created_at")
+  updatedAt       DateTime         @updatedAt @map("updated_at")
+
+  @@map("services")
+}
+
+model ServiceRate {
+  id           String  @id @default(uuid())
+  serviceId    String  @map("service_id")
+  label        String
+  unitType     String  @default("hours")
+  rate         Float
+  internalCost Float   @default(0) @map("internal_cost")
+  clientPrice  Float   @default(0) @map("client_price")
+  service      Service @relation(fields: [serviceId], references: [id], onDelete: Cascade)
+
+  @@unique([serviceId, label])
+  @@map("service_rates")
+}
+
+model ServiceTemplate {
+  id          String                @id @default(uuid())
+  name        String
+  description String?
+  category    String?
+  isActive    Boolean               @default(true)
+  lines       ServiceTemplateLine[]
+  createdAt   DateTime              @default(now()) @map("created_at")
+  updatedAt   DateTime              @updatedAt @map("updated_at")
+
+  @@map("service_templates")
+}
+
+model ServiceTemplateLine {
+  id               String           @id @default(uuid())
+  templateId       String           @map("template_id")
+  description      String
+  hours            Float?
+  rate             Float?
+  amount           Float
+  lineType         BusinessLineType @default(own_work) @map("line_type")
+  unitType         BillingUnit      @default(hour) @map("unit_type")
+  internalCost     Float            @default(0) @map("internal_cost")
+  clientPrice      Float            @default(0) @map("client_price")
+  provider         String?
+  isRecurring      Boolean          @default(false) @map("is_recurring")
+  recurrenceMonths Int?             @map("recurrence_months")
+  sortOrder        Int              @default(0)
+  template         ServiceTemplate  @relation(fields: [templateId], references: [id], onDelete: Cascade)
+
+  @@map("service_template_lines")
+}
+
+model Invoice {
+  id         String             @id @default(uuid())
+  proformaId String             @map("proforma_id")
+  number     String             @unique
+  issueDate  DateTime           @default(now()) @map("issue_date")
+  dueDate    DateTime?          @map("due_date")
+  subtotal   Float
+  discount   Float              @default(0)
+  ivaRate    Float              @default(21) @map("iva_rate")
+  ivaAmount  Float              @default(0) @map("iva_amount")
+  total      Float
+  ivaType    IvaType            @default(standard) @map("iva_type")
+  paymentMethod String          @default("bank_transfer") @map("payment_method")
+  paymentTerms  String?         @map("payment_terms")
+  notes      String?
+  status     InvoiceStatus      @default(draft)
+  createdAt  DateTime           @default(now()) @map("created_at")
+  updatedAt  DateTime           @updatedAt @map("updated_at")
+  items      InvoiceItem[]
+  payments   Payment[]
+  proforma   Proforma           @relation(fields: [proformaId], references: [id], onDelete: Cascade)
+  emailLogs  DocumentEmailLog[]
+
+  @@map("invoices")
+}
+
+model InvoiceItem {
+  id          String  @id @default(uuid())
+  invoiceId   String  @map("invoice_id")
+  description String
+  hours       Float?
+  rate        Float?
+  amount      Float
+  invoice     Invoice @relation(fields: [invoiceId], references: [id], onDelete: Cascade)
+
+  @@map("invoice_items")
+}
+
+model InvoiceCounter {
+  id   String @id
+  year Int
+  seq  Int    @default(0)
+
+  @@map("invoice_counters")
+}
+
+model Payment {
+  id        String   @id @default(uuid())
+  invoiceId String   @map("invoice_id")
+  amount    Float
+  method    String?
+  reference String?
+  paidAt    DateTime @default(now()) @map("paid_at")
+  notes     String?
+  invoice   Invoice  @relation(fields: [invoiceId], references: [id], onDelete: Cascade)
+
+  @@map("payments")
+}
+
+model ClientService {
+  id               String              @id @default(uuid())
+  code             String?             @unique
+  clientId         String              @map("client_id")
+  projectId        String?             @map("project_id")
+  proformaItemId   String?             @map("proforma_item_id")
+  name             String
+  lineType         BusinessLineType    @default(recurring_service) @map("line_type")
+  provider         String?
+  status           ClientServiceStatus @default(active)
+  unitType         BillingUnit         @default(monthly) @map("unit_type")
+  internalCost     Float               @default(0) @map("internal_cost")
+  clientPrice      Float               @default(0) @map("client_price")
+  margin           Float               @default(0)
+  startedAt        DateTime            @default(now()) @map("started_at")
+  endsAt           DateTime?           @map("ends_at")
+  renewalDate      DateTime?           @map("renewal_date")
+  recurrenceMonths Int?                @map("recurrence_months")
+  notes            String?
+  createdAt        DateTime            @default(now()) @map("created_at")
+  updatedAt        DateTime            @updatedAt @map("updated_at")
+  client           Client              @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  project          Project?            @relation(fields: [projectId], references: [id], onDelete: SetNull)
+  proformaItem     ProformaItem?       @relation(fields: [proformaItemId], references: [id], onDelete: SetNull)
+
+  @@index([clientId, status])
+  @@index([proformaItemId])
+  @@index([renewalDate])
+  @@map("client_services")
+}
+
+model EntityCounter {
+  id  String @id
+  seq Int    @default(0)
+
+  @@map("entity_counters")
+}
+
+model DocumentEmailLog {
+  id                String              @id @default(cuid())
+  documentType      DocumentEmailType   @map("document_type")
+  documentId        String              @map("document_id")
+  proformaId        String?             @map("proforma_id")
+  invoiceId         String?             @map("invoice_id")
+  to                String
+  subject           String
+  status            DocumentEmailStatus
+  provider          String              @default("resend")
+  providerMessageId String?             @map("provider_message_id")
+  error             String?
+  createdAt         DateTime            @default(now()) @map("created_at")
+  proforma          Proforma?           @relation(fields: [proformaId], references: [id], onDelete: Cascade)
+  invoice           Invoice?            @relation(fields: [invoiceId], references: [id], onDelete: Cascade)
+
+  @@index([documentType, documentId])
+  @@index([proformaId])
+  @@index([invoiceId])
+  @@map("document_email_logs")
+}
+
+model ActivityLog {
+  id         String   @id @default(cuid())
+  action     String
+  targetType String   @map("target_type")
+  targetId   String   @map("target_id")
+  targetName String   @map("target_name")
+  metadata   Json?
+  createdAt  DateTime @default(now()) @map("created_at")
+
+  @@map("activity_logs")
+}
+
+model HealthProfile {
+  id                  String             @id @default(uuid())
+  userId              String             @map("user_id")
+  ownerEmail          String             @map("owner_email")
+  age                 Int?
+  sex                 String?
+  heightCm            Int?               @map("height_cm")
+  weightKg            Float?             @map("weight_kg")
+  goal                String             @default("muscle_energy")
+  experience          String             @default("beginner")
+  healthStatus        String             @default("none") @map("health_status")
+  healthNotes         String?            @map("health_notes")
+  activityLevel       String             @default("sedentary") @map("activity_level")
+  trainingDays        Int                @default(3) @map("training_days")
+  sessionLength       String             @default("35_45") @map("session_length")
+  equipment           String             @default("bands_pullup_bar")
+  sleepQuality        String             @default("good") @map("sleep_quality")
+  dietPattern         String             @default("low_protein_disordered") @map("diet_pattern")
+  dietRestrictions    String             @default("none") @map("diet_restrictions")
+  trackingStyle       String             @default("simple_habits") @map("tracking_style")
+  createdAt           DateTime           @default(now()) @map("created_at")
+  updatedAt           DateTime           @updatedAt @map("updated_at")
+  checkIns            HealthCheckIn[]
+  workoutLogs         HealthWorkoutLog[]
+
+  @@unique([userId])
+  @@index([ownerEmail])
+  @@map("health_profiles")
+}
+
+model HealthCheckIn {
+  id          String        @id @default(uuid())
+  profileId   String        @map("profile_id")
+  userId      String        @map("user_id")
+  date        DateTime      @default(now())
+  weightKg    Float?        @map("weight_kg")
+  energy      Int
+  sleepHours  Float?        @map("sleep_hours")
+  steps       Int?
+  proteinDone Boolean       @default(false) @map("protein_done")
+  mobilityDone Boolean      @default(false) @map("mobility_done")
+  dayStatus   String        @default("partial") @map("day_status")
+  missedReason String       @default("none") @map("missed_reason")
+  notes       String?
+  createdAt   DateTime      @default(now()) @map("created_at")
+  profile     HealthProfile @relation(fields: [profileId], references: [id], onDelete: Cascade)
+
+  @@index([userId, date])
+  @@index([profileId, date])
+  @@map("health_check_ins")
+}
+
+model HealthWorkoutLog {
+  id         String        @id @default(uuid())
+  profileId  String        @map("profile_id")
+  userId     String        @map("user_id")
+  date       DateTime      @default(now())
+  session    String
+  completed  Boolean       @default(true)
+  exercises  Json          @default("[]")
+  difficulty Int?
+  missedReason String?      @map("missed_reason")
+  painNotes  String?       @map("pain_notes")
+  notes      String?
+  createdAt  DateTime      @default(now()) @map("created_at")
+  profile    HealthProfile @relation(fields: [profileId], references: [id], onDelete: Cascade)
+
+  @@index([userId, date])
+  @@index([profileId, date])
+  @@map("health_workout_logs")
+}

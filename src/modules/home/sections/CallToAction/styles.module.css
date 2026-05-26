@@ -1,0 +1,71 @@
+.intro {
+  background-image: url("/images/tree/Tree_88.png");
+  background-position: center;
+  background-size: cover;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.overlay {
+  background: linear-gradient(90deg, rgb(0 0 0 / 0.82), rgb(0 0 0 / 0.3));
+  padding: clamp(48px, 8vw, 96px) clamp(24px, 5vw, 72px);
+}
+
+.textCol {
+  max-width: 780px;
+}
+
+.eyebrow {
+  color: var(--color-accent);
+  font-weight: 800;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+}
+
+.intro h2 {
+  font-size: clamp(1.8rem, 5vw, 3.8rem);
+  line-height: 1.1;
+  margin: 12px 0 0;
+  color: #fff;
+}
+
+.description {
+  color: rgb(255 255 255 / 0.82);
+  line-height: 1.7;
+  font-size: 1.05rem;
+  margin-top: 20px;
+}
+
+.points {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0 0;
+  display: grid;
+  gap: 10px;
+}
+
+.points li {
+  color: rgb(255 255 255 / 0.72);
+  line-height: 1.6;
+  padding-left: 20px;
+  position: relative;
+}
+
+.points li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 10px;
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--color-accent);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 28px;
+}

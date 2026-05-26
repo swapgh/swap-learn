@@ -1,0 +1,86 @@
+.showcase {
+  margin-top: -80px;
+  position: relative;
+}
+
+.viewport {
+  overflow: hidden;
+  position: relative;
+}
+
+.track {
+  display: flex;
+  transition: transform 420ms ease;
+}
+
+.slide {
+  flex: 0 0 90%;
+  padding: 0 8px;
+}
+
+.slide img {
+  display: block;
+  height: min(680px, 72vw);
+  min-height: 300px;
+  object-fit: cover;
+  width: 100%;
+  border-radius: 8px;
+}
+
+.showcasebutton {
+  position: absolute;
+  top: 50%;
+  left: 5%;
+  right: 5%;
+  transform: translateY(-50%);
+  display: flex;
+  justify-content: space-between;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.showcasebutton button {
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text);
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.showcasebutton button:hover {
+  background: var(--color-accent);
+  color: #101010;
+}
+
+.dots {
+  position: absolute;
+  bottom: 16px;
+  left: 5%;
+  right: 5%;
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  z-index: 2;
+}
+
+.dots button {
+  height: 10px;
+  min-width: 10px;
+  padding: 0;
+  background: rgba(255, 255, 255, 0.35);
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.dots button[aria-current="true"] {
+  background: var(--color-accent);
+}
