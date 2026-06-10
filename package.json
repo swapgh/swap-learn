@@ -14,6 +14,8 @@
     "db:migrate": "prisma migrate dev",
     "db:push": "prisma db push",
     "db:studio": "prisma studio",
+    "swapjobs:worker": "node scripts/swapjobs-worker.mjs",
+    "swapjobs:worker:install": "npx playwright install chromium",
     "postinstall": "prisma generate"
   },
   "dependencies": {
@@ -21,6 +23,7 @@
     "@react-pdf/renderer": "^4.5.1",
     "next": "16.2.6",
     "papaparse": "^5.5.3",
+    "playwright": "^1.60.0",
     "prisma": "^6.19.3",
     "react": "19.2.4",
     "react-dom": "19.2.4",

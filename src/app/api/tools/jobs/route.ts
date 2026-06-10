@@ -3,6 +3,7 @@ import { z } from "zod";
 import { prisma } from "@/server/prisma";
 import { apiError } from "@/server/api-error";
 import { requireToolApiUser } from "@/server/tool-access";
+import { buildDuplicateKey, scoreSwapJob } from "@/server/swapjobs/scoring";
 
 const jobSchema = z.object({
   title: z.string().min(1),
@@ -37,6 +38,19 @@ function dateOrNull(value: string | null | undefined) {
   return new Date(value);
 }
 
+export async function GET(request: NextRequest) {
+  const access = await requireToolApiUser(request);
+  if (access instanceof NextResponse) return access;
+
+  const jobs = await prisma.swapJob.findMany({
+    where: { userId: access.user.id },
+    include: { applications: { orderBy: { updatedAt: "desc" }, take: 1 } },
+    orderBy: [{ updatedAt: "desc" }],
+  });
+
+  return NextResponse.json(jobs);
+}
+
 export async function POST(request: NextRequest) {
   const access = await requireToolApiUser(request);
   if (access instanceof NextResponse) return access;
@@ -47,13 +61,36 @@ export async function POST(request: NextRequest) {
   }
 
   const isApplied = parsed.data.state === "applied";
-  const job = await prisma.swapJob.create({
-    data: {
-      ...parsed.data,
+  const profile = await prisma.swapJobProfile.findUnique({
+    where: { userId: access.user.id },
+  });
+  const scored = scoreSwapJob(parsed.data, profile);
+  const duplicateKey = buildDuplicateKey(parsed.data);
+  const { dateApplied, followUpDate, ...jobData } = parsed.data;
+  const appliedDate = dateOrNull(dateApplied) ?? (isApplied ? new Date() : null);
+  const nextFollowUpDate = dateOrNull(followUpDate) ?? (isApplied ? new Date(Date.now() + 6 * 86400000) : null);
+  const job = await prisma.swapJob.upsert({
+    where: {
+      userId_duplicateKey: {
+        userId: access.user.id,
+        duplicateKey,
+      },
+    },
+    update: {
+      ...jobData,
+      ...scored,
+      dateApplied: appliedDate,
+      followUpDate: nextFollowUpDate,
+      lastSeenAt: new Date(),
+    },
+    create: {
+      ...jobData,
+      ...scored,
+      duplicateKey,
       userId: access.user.id,
       ownerEmail: access.user.email,
-      dateApplied: dateOrNull(parsed.data.dateApplied) ?? (isApplied ? new Date() : null),
-      followUpDate: dateOrNull(parsed.data.followUpDate) ?? (isApplied ? new Date(Date.now() + 6 * 86400000) : null),
+      dateApplied: appliedDate,
+      followUpDate: nextFollowUpDate,
     },
   });
 

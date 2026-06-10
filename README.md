@@ -34,7 +34,7 @@ npm run db:push
 
 Current implementation status:
 
-- SwapJobs: dashboard, offer analysis, scoring, CV recommendation, applications, filters, messages, notes, follow-up dates, JSON/CSV import/export.
+- SwapJobs: private automation dashboard, profile rules, source searches, deterministic scoring, PostgreSQL job pipeline, worker task queue, Playwright local worker integration, approval-before-submit flow, and blocked-state logging.
 - SwapDocs: 3-step visible dashboard forms, compact stats, search, service presets connected to PERT/cost defaults, editable/deletable client/project detail pages, proforma view/edit modes, line-item editing, PERT/cost templates inside proforma edit, direct proforma delete actions, work tracking in project detail, printable proforma detail pages, and protected PDF download.
 - Pending for later: storing generated PDF files, a full template manager UI, and deeper edit/delete flows for individual estimation/cost/work rows.
 
@@ -168,7 +168,52 @@ SESSION_TTL_HOURS=8
 SWAP_DATA_DIR=/path/to/private/runtime-data
 DATABASE_URL=postgresql://USER:PASSWORD@HOST:5432/DATABASE
 ADMIN_EMAIL_ALLOWLIST=you@example.com,other-admin@example.com
+SWAPJOBS_WORKER_TOKEN=long-random-token-used-by-local-worker
+SWAPJOBS_API_BASE=https://swap.com.es
+SWAPJOBS_BROWSER_PROFILE=.data/swapjobs-browser
+SWAPJOBS_BROWSER_CHANNEL=
+SWAPJOBS_HEADLESS=0
+SWAPJOBS_POLL_MS=15000
 ```
+
+### SwapJobs local worker
+
+The web app runs on Dinahosting, but the browser automation runs from a local
+machine so it can reuse a real logged-in Chrome profile for InfoJobs, Indeed,
+and LinkedIn.
+
+Install the worker dependency and browser once:
+
+```bash
+npm ci
+npm run swapjobs:worker:install
+```
+
+Start the worker from the project folder:
+
+```bash
+set SWAPJOBS_API_BASE=https://swap.com.es
+set SWAPJOBS_WORKER_TOKEN=the-same-token-as-production-env
+npm run swapjobs:worker
+```
+
+In local development, put the same worker values in `.env.local` and restart
+`npm run dev`; the worker script also reads `.env.local`:
+
+```text
+SWAPJOBS_WORKER_TOKEN=the-same-token-used-by-next
+SWAPJOBS_API_BASE=http://localhost:3000
+SWAPJOBS_BROWSER_PROFILE=.data/swapjobs-browser
+SWAPJOBS_HEADLESS=0
+SWAPJOBS_BLOCKED_PAUSE_MS=600000
+```
+
+The first run opens Chrome with the profile stored in `.data/swapjobs-browser`.
+Log into job platforms manually in that browser. The worker does not store
+platform passwords, does not bypass CAPTCHA, and pauses before final submit
+until a task is approved from the SwapJobs dashboard.
+If a platform shows a robot/login check, the worker keeps the browser open for
+`SWAPJOBS_BLOCKED_PAUSE_MS` so you can clear it manually.
 
 If the app root must stay inside a public web directory, keep Apache rules in `.htaccess` blocking direct access to source, config, `.git`, `.env`, `tmp`, `node_modules`, and `.next/server`.
 

@@ -18,6 +18,35 @@ enum SwapJobState {
   archived
 }
 
+enum SwapJobAutomationTaskType {
+  search_source
+  inspect_job
+  fill_application
+  final_submit
+}
+
+enum SwapJobAutomationTaskStatus {
+  pending
+  claimed
+  running
+  waiting_approval
+  approved
+  completed
+  failed
+  blocked
+  cancelled
+}
+
+enum SwapJobApplicationStatus {
+  draft
+  queued
+  filling
+  waiting_approval
+  submitted
+  failed
+  blocked
+}
+
 enum ProjectStatus {
   draft
   sent
@@ -114,13 +143,152 @@ model SwapJob {
   technologies   Json         @default("[]")
   positiveFlags  Json         @default("[]") @map("positive_flags")
   riskFlags      Json         @default("[]") @map("risk_flags")
+  duplicateKey   String?      @map("duplicate_key")
+  externalId     String?      @map("external_id")
+  automationStatus String     @default("manual") @map("automation_status")
+  lastSeenAt     DateTime?    @map("last_seen_at")
   dateFound      DateTime     @default(now()) @map("date_found")
   dateApplied    DateTime?    @map("date_applied")
   followUpDate   DateTime?    @map("follow_up_date")
   createdAt      DateTime     @default(now()) @map("created_at")
   updatedAt      DateTime     @updatedAt @map("updated_at")
+  applications   SwapJobApplication[]
+  automationTasks SwapJobAutomationTask[]
+
+  @@unique([userId, duplicateKey])
+  @@index([userId, score])
+  @@index([userId, state])
 
   @@map("swap_jobs")
+}
+
+model SwapJobProfile {
+  id              String   @id @default(uuid())
+  userId          String   @unique @map("user_id")
+  ownerEmail      String   @map("owner_email")
+  fullName        String   @default("")
+  email           String   @default("")
+  phone           String   @default("")
+  location        String   @default("")
+  linkedinUrl     String?  @map("linkedin_url")
+  portfolioUrl    String?  @map("portfolio_url")
+  cvEsUrl         String   @default("/cv/Fernando_Alba_CV_ES.pdf") @map("cv_es_url")
+  cvEnUrl         String   @default("/cv/Fernando_Alba_CV_EN.pdf") @map("cv_en_url")
+  cvText          String?  @map("cv_text")
+  targetRoles     Json     @default("[]") @map("target_roles")
+  targetLocations Json     @default("[]") @map("target_locations")
+  languages       Json     @default("[]")
+  salaryMin       Int?     @map("salary_min")
+  mustHave        Json     @default("[]") @map("must_have")
+  rejectTerms     Json     @default("[]") @map("reject_terms")
+  preferredCompanies Json  @default("[]") @map("preferred_companies")
+  blockedCompanies Json   @default("[]") @map("blocked_companies")
+  applicationFields Json  @default("{}") @map("application_fields")
+  createdAt       DateTime @default(now()) @map("created_at")
+  updatedAt       DateTime @updatedAt @map("updated_at")
+
+  @@index([ownerEmail])
+  @@map("swap_job_profiles")
+}
+
+model SwapJobSearch {
+  id             String   @id @default(uuid())
+  userId         String   @map("user_id")
+  ownerEmail     String   @map("owner_email")
+  source         String
+  query          String
+  location       String?
+  modality       String   @default("any")
+  enabled        Boolean  @default(true)
+  cadenceMinutes Int      @default(1440) @map("cadence_minutes")
+  lastRunAt      DateTime? @map("last_run_at")
+  nextRunAt      DateTime? @map("next_run_at")
+  createdAt      DateTime @default(now()) @map("created_at")
+  updatedAt      DateTime @updatedAt @map("updated_at")
+
+  @@index([userId, enabled])
+  @@index([source])
+  @@map("swap_job_searches")
+}
+
+model SwapJobApplication {
+  id             String                   @id @default(uuid())
+  userId         String                   @map("user_id")
+  ownerEmail     String                   @map("owner_email")
+  jobId          String                   @map("job_id")
+  status         SwapJobApplicationStatus @default(draft)
+  source         String
+  sourceUrl      String?                  @map("source_url")
+  formFields     Json                     @default("[]") @map("form_fields")
+  preparedAnswers Json                    @default("{}") @map("prepared_answers")
+  submittedAt    DateTime?                @map("submitted_at")
+  blockedReason  String?                  @map("blocked_reason")
+  lastScreenshot String?                  @map("last_screenshot")
+  createdAt      DateTime                 @default(now()) @map("created_at")
+  updatedAt      DateTime                 @updatedAt @map("updated_at")
+  job            SwapJob                  @relation(fields: [jobId], references: [id], onDelete: Cascade)
+
+  @@index([userId, status])
+  @@index([jobId])
+  @@map("swap_job_applications")
+}
+
+model SwapJobAnswerTemplate {
+  id          String   @id @default(uuid())
+  userId      String   @map("user_id")
+  ownerEmail  String   @map("owner_email")
+  name        String
+  fieldKey    String   @map("field_key")
+  body        String
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  @@index([userId, fieldKey])
+  @@map("swap_job_answer_templates")
+}
+
+model SwapJobAutomationTask {
+  id             String                       @id @default(uuid())
+  userId         String                       @map("user_id")
+  ownerEmail     String                       @map("owner_email")
+  jobId          String?                      @map("job_id")
+  type           SwapJobAutomationTaskType
+  status         SwapJobAutomationTaskStatus  @default(pending)
+  source         String?
+  priority       Int                          @default(50)
+  payload        Json                         @default("{}")
+  result         Json?
+  claimedBy      String?                      @map("claimed_by")
+  claimedAt      DateTime?                    @map("claimed_at")
+  scheduledAt    DateTime                     @default(now()) @map("scheduled_at")
+  startedAt      DateTime?                    @map("started_at")
+  finishedAt     DateTime?                    @map("finished_at")
+  approvalToken  String?                      @map("approval_token")
+  error          String?
+  createdAt      DateTime                     @default(now()) @map("created_at")
+  updatedAt      DateTime                     @updatedAt @map("updated_at")
+  job            SwapJob?                     @relation(fields: [jobId], references: [id], onDelete: SetNull)
+  logs           SwapJobAutomationLog[]
+
+  @@index([status, scheduledAt, priority])
+  @@index([userId, status])
+  @@index([jobId])
+  @@map("swap_job_automation_tasks")
+}
+
+model SwapJobAutomationLog {
+  id        String   @id @default(uuid())
+  taskId    String   @map("task_id")
+  userId    String   @map("user_id")
+  level     String   @default("info")
+  message   String
+  metadata  Json?
+  createdAt DateTime @default(now()) @map("created_at")
+  task      SwapJobAutomationTask @relation(fields: [taskId], references: [id], onDelete: Cascade)
+
+  @@index([taskId, createdAt])
+  @@index([userId, createdAt])
+  @@map("swap_job_automation_logs")
 }
 
 model Client {

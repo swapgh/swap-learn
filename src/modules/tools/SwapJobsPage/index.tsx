@@ -13,8 +13,22 @@ export async function SwapJobsPage({
 }) {
   const jobs = await prisma.swapJob.findMany({
     where: { userId },
+    include: { applications: { orderBy: { updatedAt: "desc" }, take: 1 } },
     orderBy: [{ updatedAt: "desc" }],
   });
+  const [profile, searches, tasks] = await Promise.all([
+    prisma.swapJobProfile.findUnique({ where: { userId } }),
+    prisma.swapJobSearch.findMany({
+      where: { userId },
+      orderBy: [{ enabled: "desc" }, { source: "asc" }, { query: "asc" }],
+    }),
+    prisma.swapJobAutomationTask.findMany({
+      where: { userId },
+      include: { job: true, logs: { orderBy: { createdAt: "desc" }, take: 3 } },
+      orderBy: [{ createdAt: "desc" }],
+      take: 50,
+    }),
+  ]);
 
   return (
     <div className={styles.page}>
@@ -30,7 +44,12 @@ export async function SwapJobsPage({
             </p>
           </div>
         </div>
-        <SwapJobsClient initialJobs={JSON.parse(JSON.stringify(jobs))} />
+        <SwapJobsClient
+          initialJobs={JSON.parse(JSON.stringify(jobs))}
+          initialProfile={profile ? JSON.parse(JSON.stringify(profile)) : null}
+          initialSearches={JSON.parse(JSON.stringify(searches))}
+          initialTasks={JSON.parse(JSON.stringify(tasks))}
+        />
       </div>
     </div>
   );
